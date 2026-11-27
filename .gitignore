@@ -1,0 +1,11 @@
+# Everything here is personal financial data or derived from it. If this folder
+# ever becomes a git repository, none of it should be committed or pushed.
+data/
+dashboard_data.js
+.claude/settings.local.json
+.idea/
+__pycache__/
+*.tmp
+.venv/
+# Instructions for Claude Code; kept locally, not published.
+CLAUDE.md

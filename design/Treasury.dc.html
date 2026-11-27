@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&amp;family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;color:#c9d4e3;font-family:Spectral,Georgia,serif;background:
+ radial-gradient(1400px 700px at 50% -12%, rgba(70,102,152,.16), transparent 60%),
+ repeating-conic-gradient(from 0deg at 50% 16%, rgba(217,176,106,.03) 0deg .35deg, transparent .35deg 3.6deg),
+ radial-gradient(1800px 1100px at 50% 32%, #0d1626, #070b13 72%);
+ background-attachment:fixed;}
+a{color:#8ab6d9;text-decoration:none}a:hover{color:#ecd39a}
+::selection{background:rgba(217,176,106,.3)}
+input[type=range]{-webkit-appearance:none;appearance:none;height:14px;background:linear-gradient(90deg,#4f3517,#a97f45) no-repeat center / 100% 3px;border-radius:0;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:13px;height:13px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f0d9a2,#a97f45);border:1px solid #3a2710;box-shadow:0 0 6px rgba(217,176,106,.5);cursor:pointer}
+input[type=range]::-moz-range-track{height:3px;background:linear-gradient(90deg,#4f3517,#a97f45)}
+input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f0d9a2,#a97f45);border:1px solid #3a2710;cursor:pointer}
+input[type=range][data-dual]{position:absolute;left:0;top:0;height:13px;width:100%;margin:0;background:none;pointer-events:none}
+input[type=range][data-dual]::-moz-range-track{background:none}
+input[type=range][data-dual]::-webkit-slider-thumb{pointer-events:auto}
+input[type=range][data-dual]::-moz-range-thumb{pointer-events:auto}
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+input:focus,button:focus{outline:1px solid rgba(217,176,106,.45);outline-offset:1px}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-track{background:#0a111e}::-webkit-scrollbar-thumb{background:#3d2f1a;border:2px solid #0a111e;border-radius:6px}
+@keyframes glint{0%,100%{opacity:.5}50%{opacity:1}}
+</style>
+</helmet>
+<div style="min-height:100vh;padding:38px 28px 90px">
+<div style="max-width:1560px;margin:0 auto">
+
+  <!-- ═══════════ HEADER ═══════════ -->
+  <div style="display:flex;align-items:center;gap:26px;margin-bottom:14px">
+    <div style="height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(217,176,106,.55));box-shadow:0 1px 0 rgba(0,0,0,.5)"></div>
+    <div style="width:12px;height:12px;transform:rotate(45deg);border:1px solid #a97f45;background:rgba(217,176,106,.12)"></div>
+    <div style="position:relative;width:132px;height:132px;flex:0 0 auto">
+      <div style="position:absolute;inset:0;border-radius:50%;border:1px solid #7a5c33;box-shadow:0 0 0 5px rgba(10,17,30,.9), 0 0 0 6px #4f3517, 0 0 26px rgba(217,176,106,.22), inset 0 0 18px rgba(0,0,0,.7)"></div>
+      <div style="position:absolute;inset:7px;border-radius:50%;overflow:hidden;border:1px solid rgba(217,176,106,.4);background:radial-gradient(circle at 50% 35%,#14203a,#0a111e);display:flex;align-items:center;justify-content:center">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="crest" shape="circle" fit="contain" placeholder="drop crest" hint-size="118px,118px" style="width: 103px; height: 103px"></x-import>
+      </div>
+    </div>
+    <div style="width:12px;height:12px;transform:rotate(45deg);border:1px solid #a97f45;background:rgba(217,176,106,.12)"></div>
+    <div style="height:1px;flex:1;background:linear-gradient(270deg,transparent,rgba(217,176,106,.55));box-shadow:0 1px 0 rgba(0,0,0,.5)"></div>
+  </div>
+  <div style="text-align:center;margin-bottom:6px">
+    <div style="font-family:Cinzel,serif;font-weight:700;font-size:34px;letter-spacing:.34em;color:#ecd39a;text-shadow:0 0 22px rgba(217,176,106,.35), 0 2px 2px rgba(0,0,0,.8)">TREASURY</div>
+  </div>
+
+  <!-- stat medallions -->
+  <div style="display:flex;justify-content:center;gap:74px;margin:44px 0 50px;flex-wrap:wrap">
+    <sc-for list="{{ medallions }}" as="m" hint-placeholder-count="3">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;min-width:150px">
+        <div style="width:88px;height:88px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 12px rgba(217,176,106,.18))">
+          <sc-if value="{{ m.isChest }}" hint-placeholder-val="{{ true }}">
+            <svg viewBox="0 0 80 80" style="width:86px;height:86px" fill="none" stroke="#d9b06a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M64.5 62.66 L46.5 59.41 L40 61.13 L63.5 67.34 Q66.34 65.52 64.5 62.66 Z"></path>
+              <path d="M40 58.23 L28.2 56.1 L27.8 57.9 L33.5 59.41 Z"></path>
+              <path d="M15.5 62.66 L51.8 56.1 L52.2 57.9 L16.5 67.34 Q13.66 65.52 15.5 62.66 Z"></path>
+              <path d="M39 65.5 L41 65.5 L42.6 72.5 Q40 75.1 37.4 72.5 Z" data-comment-anchor="ca4459d761-path"></path>
+              <path d="M40 15 C35 24 38 28 33 32 C30 28 29 32 28 37 C24 46 30 55 40 55 C50 55 56 46 52 37 C51 32 50 28 47 32 C42 28 45 24 40 15 Z"></path>
+              <path d="M40 30 C36 37 38 42 40 50 C42 42 44 37 40 30 Z"></path>
+            </svg>
+          </sc-if>
+          <sc-if value="{{ m.isScale }}" hint-placeholder-val="{{ false }}">
+            <svg viewBox="0 0 80 80" style="width:86px;height:86px" fill="none" stroke="#d9b06a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M40 26 V56"></path>
+              <path d="M32 56 L28 63 H52 L48 56 Z"></path>
+              <circle cx="40" cy="26" r="2.6"></circle>
+              <path d="{{ scaleGeo.beam }}"></path>
+              <path d="{{ scaleGeo.lc1 }}"></path><path d="{{ scaleGeo.lc2 }}"></path>
+              <path d="{{ scaleGeo.lrim }}"></path><path d="{{ scaleGeo.lbowl }}"></path>
+              <path d="{{ scaleGeo.rc1 }}"></path><path d="{{ scaleGeo.rc2 }}"></path>
+              <path d="{{ scaleGeo.rrim }}"></path><path d="{{ scaleGeo.rbowl }}"></path>
+            </svg>
+          </sc-if>
+          <sc-if value="{{ m.isLoom }}" hint-placeholder-val="{{ false }}">
+            <svg viewBox="0 0 80 80" style="width:86px;height:86px" fill="none" stroke="#d9b06a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="14" y="44" width="48" height="20" rx="1"></rect>
+              <path d="M18 44 Q22 40 26 44 Q30 40 34 44 Q38 40 42 44 Q46 41 50 44" stroke-width="2.4"></path>
+              <path d="M14 54 H62"></path>
+              <path d="M30 44 V54"></path><path d="M46 44 V54"></path>
+              <path d="M22 54 V64"></path><path d="M38 54 V64"></path><path d="M54 54 V64"></path>
+              <rect x="40" y="26" width="21" height="10" rx="1" transform="rotate(-11 50 31)"></rect>
+              <path d="M10 20 L30 27 L17 33 Z"></path>
+              <path d="M10 20 L5 16"></path>
+            </svg>
+          </sc-if>
+          <sc-if value="{{ m.isBag }}" hint-placeholder-val="{{ false }}">
+            <svg viewBox="0 0 80 80" style="width:86px;height:86px" fill="none" stroke="#d9b06a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 36 Q14 20 40 20 Q66 20 66 36 V60 Q66 62 64 62 H16 Q14 62 14 60 Z"></path>
+              <path d="M14 40 H66"></path>
+              <rect x="34" y="37" width="12" height="9" rx="1.5"></rect>
+              <path d="M40 41 V44"></path>
+            </svg>
+          </sc-if>
+        </div>
+        <div style="font-family:Cinzel,serif;font-weight:700;font-size:23px;color:{{ m.color }};text-shadow:0 0 12px rgba(217,176,106,.3);white-space:nowrap">{{ m.value }}</div>
+        <div style="text-align:center">
+          <div style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.3em;color:#a8b4c7">{{ m.label }}</div>
+          <div style="font-size:13px;color:#68758c;font-style:italic;margin-top:3px">{{ m.sub }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:26px">
+
+  <!-- ═══════════ EXPENSES ═══════════ -->
+  <div data-screen-label="Expenses" style="grid-column:span 12;position:relative;background:linear-gradient(165deg,#101a2d,#0b1322 55%,#0a1120);border:1px solid #6d5330;box-shadow:inset 0 0 0 1px rgba(217,176,106,.07), inset 0 0 80px rgba(3,7,14,.55), 0 20px 44px rgba(0,0,0,.45);padding:28px 32px 32px">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px">
+      <div style="height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(217,176,106,.5))"></div>
+      <div style="width:8px;height:8px;transform:rotate(45deg);border:1px solid #a97f45"></div>
+      <div style="font-family:Cinzel,serif;font-size:16px;font-weight:600;letter-spacing:.34em;color:#ecd39a">PROCUREMENTS</div>
+      <div style="width:8px;height:8px;transform:rotate(45deg);border:1px solid #a97f45"></div>
+      <div style="height:1px;flex:1;background:linear-gradient(270deg,transparent,rgba(217,176,106,.5))"></div>
+    </div>
+
+    <!-- controls -->
+    <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:flex-end;margin-bottom:18px">
+      <div style="flex:2 1 380px">
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:8px">CATEGORIES</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <sc-for list="{{ catChips }}" as="c" hint-placeholder-count="9">
+            <button onClick="{{ c.toggle }}" style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.14em;padding:6px 13px;cursor:pointer;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }};transition:all .15s" style-hover="border-color:#d9b06a;color:#ecd39a">{{ c.name }}</button>
+          </sc-for>
+          <sc-if value="{{ hasXfer }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ xferToggle }}" title="Money moved to the broker is a transfer, not spending — hidden from the burn rate by default" style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.14em;padding:6px 13px;cursor:pointer;background:{{ xferBg }};color:{{ xferFg }};border:1px dashed {{ xferBd }};transition:all .15s" style-hover="border-color:#d9b06a;color:#ecd39a">{{ xferLabel }}</button>
+          </sc-if>
+        </div>
+      </div>
+      <div style="flex:2 1 320px">
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:8px">TAGS</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <sc-for list="{{ tagChips }}" as="tc" hint-placeholder-count="8">
+            <button onClick="{{ tc.toggle }}" style="font-family:Spectral,serif;font-size:12px;font-style:italic;padding:5px 12px;cursor:pointer;background:{{ tc.bg }};color:{{ tc.fg }};border:1px solid {{ tc.bd }};transition:all .15s" style-hover="border-color:#d9b06a;color:#ecd39a">{{ tc.name }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex:1 1 220px">
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:8px">SEEK IN NOTES</div>
+        <input value="{{ q }}" onChange="{{ setQ }}" placeholder="e.g. shopmall, piano…" style="width:100%;box-sizing:border-box;background:#0a1120;border:1px solid #4f3d22;color:#dfe7f2;font-family:Spectral,serif;font-size:14px;padding:9px 12px">
+        <div style="font-size:12px;color:#68758c;font-style:italic;margin-top:5px">{{ matchInfo }}</div>
+      </div>
+      <div style="flex:1 1 200px">
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:8px">DATES &nbsp;<span style="color:#8ab6d9;letter-spacing:.06em;font-family:Spectral,serif;font-size:12px;text-transform:none">{{ dateLabel }}</span></div>
+        <div style="position:relative;height:13px;margin-top:4px">
+          <div style="position:absolute;left:0;right:0;top:5px;height:3px;border-radius:2px;background:linear-gradient(90deg,#4f3517,#a97f45)"></div>
+          <input type="range" data-dual="1" min="0" max="{{ span }}" value="{{ dFrom }}" onChange="{{ setDFrom }}">
+          <input type="range" data-dual="1" min="0" max="{{ span }}" value="{{ dTo }}" onChange="{{ setDTo }}">
+        </div>
+      </div>
+      <div style="flex:1 1 200px">
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:8px">AMOUNT &nbsp;<span style="color:#8ab6d9;letter-spacing:.06em;font-family:Spectral,serif;font-size:12px;text-transform:none">{{ amtLabel }}</span></div>
+        <div style="position:relative;height:13px;margin-top:4px">
+          <div style="position:absolute;left:0;right:0;top:5px;height:3px;border-radius:2px;background:linear-gradient(90deg,#4f3517,#a97f45)"></div>
+          <input type="range" data-dual="1" min="{{ amtFloor }}" max="{{ amtCeil }}" value="{{ aMin }}" onChange="{{ setAMin }}">
+          <input type="range" data-dual="1" min="{{ amtFloor }}" max="{{ amtCeil }}" value="{{ aMax }}" onChange="{{ setAMax }}">
+        </div>
+      </div>
+      <button onClick="{{ reset }}" style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.22em;padding:9px 18px;cursor:pointer;background:rgba(217,176,106,.08);color:#d9b06a;border:1px solid #7a5c33" style-hover="background:rgba(217,176,106,.18);color:#ecd39a">RESET</button>
+    </div>
+    <div style="font-size:13px;color:#68758c;font-style:italic;border-top:1px solid rgba(217,176,106,.12);border-bottom:1px solid rgba(217,176,106,.12);padding:8px 2px;margin-bottom:20px">{{ activeSummary }}</div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:30px">
+      <!-- chart side -->
+      <div style="min-width:0">
+        <div style="display:flex;gap:0;margin-bottom:16px">
+          <button onClick="{{ viewTotals }}" style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.22em;padding:7px 18px;cursor:pointer;background:{{ totalsBg }};color:{{ totalsFg }};border:1px solid #7a5c33;border-right:none">TOTALS</button>
+          <button onClick="{{ viewTrend }}" style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.22em;padding:7px 18px;cursor:pointer;background:{{ trendBg }};color:{{ trendFg }};border:1px solid #7a5c33">OVER TIME</button>
+        </div>
+        <sc-if value="{{ showTotals }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ barItems }}" as="b" hint-placeholder-count="5">
+              <div style="display:grid;grid-template-columns:118px 1fr 170px;gap:12px;align-items:center">
+                <div style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.12em;color:#a8b4c7;text-align:right;text-transform:uppercase">{{ b.name }}</div>
+                <div style="height:16px;background:rgba(255,255,255,.03);border:1px solid rgba(217,176,106,.12);position:relative">
+                  <div style="position:absolute;inset:1px auto 1px 1px;width:{{ b.w }}%;background:linear-gradient(90deg,{{ b.color }}55,{{ b.color }});box-shadow:{{ b.shadow }};opacity:{{ b.op }};filter:{{ b.filter }};transition:all .18s"></div>
+                </div>
+                <div style="font-size:13px;color:#dfe7f2;white-space:nowrap">{{ b.amtF }} <span style="color:#68758c;font-style:italic">· {{ b.share }}%</span></div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ showTrend }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <svg viewBox="0 0 760 230" style="width:100%;display:block">
+              <path d="{{ trendGrid }}" stroke="rgba(217,176,106,.12)" stroke-width="1" fill="none"></path>
+              <polyline points="{{ trend.p0 }}" fill="none" stroke="{{ trend.c0 }}" stroke-width="{{ trend.w0 }}" opacity="{{ trend.o0 }}" style="filter:{{ trend.f0 }}"></polyline>
+              <polyline points="{{ trend.p1 }}" fill="none" stroke="{{ trend.c1 }}" stroke-width="{{ trend.w1 }}" opacity="{{ trend.o1 }}" style="filter:{{ trend.f1 }}"></polyline>
+              <polyline points="{{ trend.p2 }}" fill="none" stroke="{{ trend.c2 }}" stroke-width="{{ trend.w2 }}" opacity="{{ trend.o2 }}" style="filter:{{ trend.f2 }}"></polyline>
+              <polyline points="{{ trend.p3 }}" fill="none" stroke="{{ trend.c3 }}" stroke-width="{{ trend.w3 }}" opacity="{{ trend.o3 }}" style="filter:{{ trend.f3 }}"></polyline>
+              <polyline points="{{ trend.p4 }}" fill="none" stroke="{{ trend.c4 }}" stroke-width="{{ trend.w4 }}" opacity="{{ trend.o4 }}" style="filter:{{ trend.f4 }}"></polyline>
+              <polyline points="{{ trend.p5 }}" fill="none" stroke="{{ trend.c5 }}" stroke-width="{{ trend.w5 }}" opacity="{{ trend.o5 }}" style="filter:{{ trend.f5 }}"></polyline>
+              <polyline points="{{ trend.p6 }}" fill="none" stroke="{{ trend.c6 }}" stroke-width="{{ trend.w6 }}" opacity="{{ trend.o6 }}" style="filter:{{ trend.f6 }}"></polyline>
+              <polyline points="{{ trend.p7 }}" fill="none" stroke="{{ trend.c7 }}" stroke-width="{{ trend.w7 }}" opacity="{{ trend.o7 }}" style="filter:{{ trend.f7 }}"></polyline>
+              <polyline points="{{ trend.p8 }}" fill="none" stroke="{{ trend.c8 }}" stroke-width="{{ trend.w8 }}" opacity="{{ trend.o8 }}" style="filter:{{ trend.f8 }}"></polyline>
+              <polyline points="{{ trend.p9 }}" fill="none" stroke="{{ trend.c9 }}" stroke-width="{{ trend.w9 }}" opacity="{{ trend.o9 }}" style="filter:{{ trend.f9 }}"></polyline>
+              <polyline points="{{ trend.p10 }}" fill="none" stroke="{{ trend.c10 }}" stroke-width="{{ trend.w10 }}" opacity="{{ trend.o10 }}" style="filter:{{ trend.f10 }}"></polyline>
+              <polyline points="{{ trend.p11 }}" fill="none" stroke="{{ trend.c11 }}" stroke-width="{{ trend.w11 }}" opacity="{{ trend.o11 }}" style="filter:{{ trend.f11 }}"></polyline>
+            </svg>
+            <div style="display:flex;justify-content:space-between;font-family:Cinzel,serif;font-size:10px;letter-spacing:.14em;color:#68758c;padding:6px 6px 0">
+              <sc-for list="{{ trendMonths }}" as="tm" hint-placeholder-count="7"><span>{{ tm.label }}</span></sc-for>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:12px">
+              <sc-for list="{{ trendLegend }}" as="l" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#a8b4c7;opacity:{{ l.op }};transition:opacity .18s"><div style="width:9px;height:9px;transform:rotate(45deg);background:{{ l.color }};box-shadow:{{ l.glow }}"></div>{{ l.name }}</div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+        <!-- stats -->
+        <div style="display:flex;gap:34px;margin-top:24px;border-top:1px solid rgba(217,176,106,.14);padding-top:16px;flex-wrap:wrap">
+          <div><div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.26em;color:#7e8ba0">FILTERED TOTAL</div><div style="font-family:Cinzel,serif;font-size:22px;font-weight:600;color:#ecd39a;margin-top:4px">{{ txTotal }}</div></div>
+          <div><div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.26em;color:#7e8ba0">ENTRIES</div><div style="font-family:Cinzel,serif;font-size:22px;font-weight:600;color:#c9d4e3;margin-top:4px">{{ txCount }}</div></div>
+          <div><div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.26em;color:#7e8ba0">AVG / ENTRY</div><div style="font-family:Cinzel,serif;font-size:22px;font-weight:600;color:#c9d4e3;margin-top:4px">{{ txAvg }}</div></div>
+        </div>
+      </div>
+
+      <!-- table side -->
+      <div style="min-width:0">
+        <sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px dashed rgba(217,176,106,.3);padding:44px 20px;text-align:center;color:#7e8ba0;font-style:italic">No entries match these filters — the vault records are silent. Loosen a filter or press Reset.</div>
+        </sc-if>
+        <sc-if value="{{ hasRows }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <table style="width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed">
+              
+              <thead><tr>
+                <th onClick="{{ sortDate }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;color:#d9b06a;text-align:left;padding:6px 8px;border-bottom:1px solid #7a5c33;cursor:pointer;white-space:nowrap">DATE {{ arrDate }}</th>
+                <th onClick="{{ sortCat }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;color:#d9b06a;text-align:left;padding:6px 8px;border-bottom:1px solid #7a5c33;cursor:pointer;white-space:nowrap">CATEGORY {{ arrCat }}</th>
+                <th onClick="{{ sortAmt }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;color:#d9b06a;text-align:right;padding:6px 8px;border-bottom:1px solid #7a5c33;cursor:pointer;white-space:nowrap">AMOUNT {{ arrAmt }}</th>
+                <th onClick="{{ sortNote }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;color:#d9b06a;text-align:left;padding:6px 8px;border-bottom:1px solid #7a5c33;cursor:pointer;white-space:nowrap">NOTE {{ arrNote }}</th>
+              </tr></thead>
+              <tbody>
+                <sc-for list="{{ txRows }}" as="r" hint-placeholder-count="8">
+                  <tr style="border-bottom:1px solid rgba(217,176,106,.08);background:{{ r.bg }};transition:background .18s">
+                    <td style="padding:7px 8px;color:#a8b4c7;white-space:nowrap">{{ r.date }}</td>
+                    <td style="padding:7px 8px;white-space:nowrap"><span style="display:inline-block;width:8px;height:8px;transform:rotate(45deg);background:{{ r.color }};margin-right:8px"></span><span style="color:#c9d4e3">{{ r.cat }}</span></td>
+                    <td style="padding:7px 8px;text-align:right;color:{{ r.amtColor }};white-space:nowrap">{{ r.amtF }}</td>
+                    <td style="padding:7px 8px;color:#68758c;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.note }}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+              <div style="font-size:12px;color:#68758c;font-style:italic">{{ shownInfo }}</div>
+              <sc-if value="{{ moreAvailable }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ showMore }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;padding:6px 14px;cursor:pointer;background:transparent;color:#8ab6d9;border:1px solid #3d5878" style-hover="color:#ecd39a;border-color:#7a5c33">SHOW MORE</button>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ MEANS (income) ═══════════ -->
+  <div data-screen-label="Means" style="grid-column:span 12;position:relative;background:linear-gradient(165deg,#101a2d,#0b1322 55%,#0a1120);border:1px solid #6d5330;box-shadow:inset 0 0 0 1px rgba(217,176,106,.07), inset 0 0 80px rgba(3,7,14,.55), 0 20px 44px rgba(0,0,0,.45);padding:28px 32px 32px">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px">
+      <div style="height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(217,176,106,.5))"></div>
+      <div style="width:8px;height:8px;transform:rotate(45deg);border:1px solid #a97f45"></div>
+      <div style="font-family:Cinzel,serif;font-size:16px;font-weight:600;letter-spacing:.34em;color:#ecd39a">MEANS</div>
+      <div style="width:8px;height:8px;transform:rotate(45deg);border:1px solid #a97f45"></div>
+      <div style="height:1px;flex:1;background:linear-gradient(270deg,transparent,rgba(217,176,106,.5))"></div>
+    </div>
+
+    <!-- controls -->
+    <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:flex-end;margin-bottom:18px">
+      <div style="flex:2 1 380px">
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:8px">SOURCES</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <sc-for list="{{ iCatChips }}" as="c" hint-placeholder-count="4">
+            <button onClick="{{ c.toggle }}" style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.14em;padding:6px 13px;cursor:pointer;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }};transition:all .15s" style-hover="border-color:#d9b06a;color:#ecd39a">{{ c.name }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex:2 1 320px">
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:8px">TAGS</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px">
+          <sc-for list="{{ iTagChips }}" as="tc" hint-placeholder-count="2">
+            <button onClick="{{ tc.toggle }}" style="font-family:Spectral,serif;font-size:12px;font-style:italic;padding:5px 12px;cursor:pointer;background:{{ tc.bg }};color:{{ tc.fg }};border:1px solid {{ tc.bd }};transition:all .15s" style-hover="border-color:#d9b06a;color:#ecd39a">{{ tc.name }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="flex:1 1 220px">
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:8px">SEEK IN NOTES</div>
+        <input value="{{ iq }}" onChange="{{ setIq }}" placeholder="e.g. tuition, design…" style="width:100%;box-sizing:border-box;background:#0a1120;border:1px solid #4f3d22;color:#dfe7f2;font-family:Spectral,serif;font-size:14px;padding:9px 12px">
+        <div style="font-size:12px;color:#68758c;font-style:italic;margin-top:5px">{{ iMatchInfo }}</div>
+      </div>
+      <div style="flex:1 1 200px">
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:8px">DATES &nbsp;<span style="color:#8ab6d9;letter-spacing:.06em;font-family:Spectral,serif;font-size:12px;text-transform:none">{{ iDateLabel }}</span></div>
+        <div style="position:relative;height:13px;margin-top:4px">
+          <div style="position:absolute;left:0;right:0;top:5px;height:3px;border-radius:2px;background:linear-gradient(90deg,#4f3517,#a97f45)"></div>
+          <input type="range" data-dual="1" min="0" max="{{ iSpan }}" value="{{ iDFrom }}" onChange="{{ setIDFrom }}">
+          <input type="range" data-dual="1" min="0" max="{{ iSpan }}" value="{{ iDTo }}" onChange="{{ setIDTo }}">
+        </div>
+      </div>
+      <div style="flex:1 1 200px">
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:8px">AMOUNT &nbsp;<span style="color:#8ab6d9;letter-spacing:.06em;font-family:Spectral,serif;font-size:12px;text-transform:none">{{ iAmtLabel }}</span></div>
+        <div style="position:relative;height:13px;margin-top:4px">
+          <div style="position:absolute;left:0;right:0;top:5px;height:3px;border-radius:2px;background:linear-gradient(90deg,#4f3517,#a97f45)"></div>
+          <input type="range" data-dual="1" min="{{ iAmtFloor }}" max="{{ iAmtCeil }}" value="{{ iAMin }}" onChange="{{ setIAMin }}">
+          <input type="range" data-dual="1" min="{{ iAmtFloor }}" max="{{ iAmtCeil }}" value="{{ iAMax }}" onChange="{{ setIAMax }}">
+        </div>
+      </div>
+      <button onClick="{{ iReset }}" style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.22em;padding:9px 18px;cursor:pointer;background:rgba(217,176,106,.08);color:#d9b06a;border:1px solid #7a5c33" style-hover="background:rgba(217,176,106,.18);color:#ecd39a">RESET</button>
+    </div>
+    <div style="font-size:13px;color:#68758c;font-style:italic;border-top:1px solid rgba(217,176,106,.12);border-bottom:1px solid rgba(217,176,106,.12);padding:8px 2px;margin-bottom:20px">{{ iActiveSummary }}</div>
+
+    <div style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:30px">
+      <!-- chart side -->
+      <div style="min-width:0">
+        <div style="display:flex;gap:0;margin-bottom:16px">
+          <button onClick="{{ iViewTotals }}" style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.22em;padding:7px 18px;cursor:pointer;background:{{ iTotalsBg }};color:{{ iTotalsFg }};border:1px solid #7a5c33;border-right:none">TOTALS</button>
+          <button onClick="{{ iViewTrend }}" style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.22em;padding:7px 18px;cursor:pointer;background:{{ iTrendBg }};color:{{ iTrendFg }};border:1px solid #7a5c33">OVER TIME</button>
+        </div>
+        <sc-if value="{{ iShowTotals }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ iBarItems }}" as="b" hint-placeholder-count="4">
+              <div style="display:grid;grid-template-columns:118px 1fr 170px;gap:12px;align-items:center">
+                <div style="font-family:Cinzel,serif;font-size:11px;letter-spacing:.12em;color:#a8b4c7;text-align:right;text-transform:uppercase">{{ b.name }}</div>
+                <div style="height:16px;background:rgba(255,255,255,.03);border:1px solid rgba(217,176,106,.12);position:relative">
+                  <div style="position:absolute;inset:1px auto 1px 1px;width:{{ b.w }}%;background:linear-gradient(90deg,{{ b.color }}55,{{ b.color }});box-shadow:{{ b.shadow }};opacity:{{ b.op }};filter:{{ b.filter }};transition:all .18s"></div>
+                </div>
+                <div style="font-size:13px;color:#dfe7f2;white-space:nowrap">{{ b.amtF }} <span style="color:#68758c;font-style:italic">· {{ b.share }}%</span></div>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+        <sc-if value="{{ iShowTrend }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <svg viewBox="0 0 760 230" style="width:100%;display:block">
+              <polyline points="{{ iTrend.p0 }}" fill="none" stroke="{{ iTrend.c0 }}" stroke-width="{{ iTrend.w0 }}" opacity="{{ iTrend.o0 }}" style="filter:{{ iTrend.f0 }}"></polyline>
+              <polyline points="{{ iTrend.p1 }}" fill="none" stroke="{{ iTrend.c1 }}" stroke-width="{{ iTrend.w1 }}" opacity="{{ iTrend.o1 }}" style="filter:{{ iTrend.f1 }}"></polyline>
+              <polyline points="{{ iTrend.p2 }}" fill="none" stroke="{{ iTrend.c2 }}" stroke-width="{{ iTrend.w2 }}" opacity="{{ iTrend.o2 }}" style="filter:{{ iTrend.f2 }}"></polyline>
+              <polyline points="{{ iTrend.p3 }}" fill="none" stroke="{{ iTrend.c3 }}" stroke-width="{{ iTrend.w3 }}" opacity="{{ iTrend.o3 }}" style="filter:{{ iTrend.f3 }}"></polyline>
+              <polyline points="{{ iTrend.p4 }}" fill="none" stroke="{{ iTrend.c4 }}" stroke-width="{{ iTrend.w4 }}" opacity="{{ iTrend.o4 }}" style="filter:{{ iTrend.f4 }}"></polyline>
+              <polyline points="{{ iTrend.p5 }}" fill="none" stroke="{{ iTrend.c5 }}" stroke-width="{{ iTrend.w5 }}" opacity="{{ iTrend.o5 }}" style="filter:{{ iTrend.f5 }}"></polyline>
+              <polyline points="{{ iTrend.p6 }}" fill="none" stroke="{{ iTrend.c6 }}" stroke-width="{{ iTrend.w6 }}" opacity="{{ iTrend.o6 }}" style="filter:{{ iTrend.f6 }}"></polyline>
+              <polyline points="{{ iTrend.p7 }}" fill="none" stroke="{{ iTrend.c7 }}" stroke-width="{{ iTrend.w7 }}" opacity="{{ iTrend.o7 }}" style="filter:{{ iTrend.f7 }}"></polyline>
+              <polyline points="{{ iTrend.p8 }}" fill="none" stroke="{{ iTrend.c8 }}" stroke-width="{{ iTrend.w8 }}" opacity="{{ iTrend.o8 }}" style="filter:{{ iTrend.f8 }}"></polyline>
+              <polyline points="{{ iTrend.p9 }}" fill="none" stroke="{{ iTrend.c9 }}" stroke-width="{{ iTrend.w9 }}" opacity="{{ iTrend.o9 }}" style="filter:{{ iTrend.f9 }}"></polyline>
+            </svg>
+            <div style="display:flex;justify-content:space-between;font-family:Cinzel,serif;font-size:10px;letter-spacing:.14em;color:#68758c;padding:6px 6px 0">
+              <sc-for list="{{ iTrendMonths }}" as="tm" hint-placeholder-count="7"><span>{{ tm.label }}</span></sc-for>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:12px">
+              <sc-for list="{{ iTrendLegend }}" as="l" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:#a8b4c7;opacity:{{ l.op }};transition:opacity .18s"><div style="width:9px;height:9px;transform:rotate(45deg);background:{{ l.color }};box-shadow:{{ l.glow }}"></div>{{ l.name }}</div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+        <!-- stats -->
+        <div style="display:flex;gap:34px;margin-top:24px;border-top:1px solid rgba(217,176,106,.14);padding-top:16px;flex-wrap:wrap">
+          <div><div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.26em;color:#7e8ba0">FILTERED TOTAL</div><div style="font-family:Cinzel,serif;font-size:22px;font-weight:600;color:#8fd0a0;margin-top:4px">{{ iTxTotal }}</div></div>
+          <div><div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.26em;color:#7e8ba0">ENTRIES</div><div style="font-family:Cinzel,serif;font-size:22px;font-weight:600;color:#c9d4e3;margin-top:4px">{{ iTxCount }}</div></div>
+          <div><div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.26em;color:#7e8ba0">AVG / ENTRY</div><div style="font-family:Cinzel,serif;font-size:22px;font-weight:600;color:#c9d4e3;margin-top:4px">{{ iTxAvg }}</div></div>
+        </div>
+      </div>
+
+      <!-- table side -->
+      <div style="min-width:0">
+        <sc-if value="{{ iNoRows }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px dashed rgba(217,176,106,.3);padding:44px 20px;text-align:center;color:#7e8ba0;font-style:italic">No means match these filters — the coffers are quiet here. Loosen a filter or press Reset.</div>
+        </sc-if>
+        <sc-if value="{{ iHasRows }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <table style="width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed">
+              <thead><tr>
+                <th onClick="{{ iSortDate }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;color:#d9b06a;text-align:left;padding:6px 8px;border-bottom:1px solid #7a5c33;cursor:pointer;white-space:nowrap">DATE {{ iArrDate }}</th>
+                <th onClick="{{ iSortCat }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;color:#d9b06a;text-align:left;padding:6px 8px;border-bottom:1px solid #7a5c33;cursor:pointer;white-space:nowrap">SOURCE {{ iArrCat }}</th>
+                <th onClick="{{ iSortAmt }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;color:#d9b06a;text-align:right;padding:6px 8px;border-bottom:1px solid #7a5c33;cursor:pointer;white-space:nowrap">AMOUNT {{ iArrAmt }}</th>
+                <th onClick="{{ iSortNote }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;color:#d9b06a;text-align:left;padding:6px 8px;border-bottom:1px solid #7a5c33;cursor:pointer;white-space:nowrap">NOTE {{ iArrNote }}</th>
+              </tr></thead>
+              <tbody>
+                <sc-for list="{{ iTxRows }}" as="r" hint-placeholder-count="8">
+                  <tr style="border-bottom:1px solid rgba(217,176,106,.08);background:{{ r.bg }};transition:background .18s">
+                    <td style="padding:7px 8px;color:#a8b4c7;white-space:nowrap">{{ r.date }}</td>
+                    <td style="padding:7px 8px;white-space:nowrap"><span style="display:inline-block;width:8px;height:8px;transform:rotate(45deg);background:{{ r.color }};margin-right:8px"></span><span style="color:#c9d4e3">{{ r.cat }}</span></td>
+                    <td style="padding:7px 8px;text-align:right;color:{{ r.amtColor }};white-space:nowrap">{{ r.amtF }}</td>
+                    <td style="padding:7px 8px;color:#68758c;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ r.note }}</td>
+                  </tr>
+                </sc-for>
+              </tbody>
+            </table>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+              <div style="font-size:12px;color:#68758c;font-style:italic">{{ iShownInfo }}</div>
+              <sc-if value="{{ iMoreAvailable }}" hint-placeholder-val="{{ false }}">
+                <button onClick="{{ iShowMore }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;padding:6px 14px;cursor:pointer;background:transparent;color:#8ab6d9;border:1px solid #3d5878" style-hover="color:#ecd39a;border-color:#7a5c33">SHOW MORE</button>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ PROJECTIONS & FI ═══════════ -->
+  <div data-screen-label="Projections" style="grid-column:span 12;position:relative;background:linear-gradient(165deg,#101a2d,#0b1322 55%,#0a1120);border:1px solid #6d5330;box-shadow:inset 0 0 0 1px rgba(217,176,106,.07), inset 0 0 80px rgba(3,7,14,.55), 0 20px 44px rgba(0,0,0,.45);padding:28px 32px 32px">
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:22px">
+      <div style="height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(217,176,106,.5))"></div>
+      <div style="width:8px;height:8px;transform:rotate(45deg);border:1px solid #a97f45"></div>
+      <div style="font-family:Cinzel,serif;font-size:16px;font-weight:600;letter-spacing:.34em;color:#ecd39a">DIVINATION</div>
+      <div style="width:8px;height:8px;transform:rotate(45deg);border:1px solid #a97f45"></div>
+      <div style="height:1px;flex:1;background:linear-gradient(270deg,transparent,rgba(217,176,106,.5))"></div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:330px minmax(0,1fr);gap:34px">
+      <!-- inputs rail -->
+      <div style="border-right:1px solid rgba(217,176,106,.14);padding-right:30px">
+        <div style="display:flex;flex-direction:column;gap:15px">
+          <sc-for list="{{ projInputs }}" as="i" hint-placeholder-count="8">
+            <div>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px">
+                <span style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;color:#a8b4c7">{{ i.label }}</span>
+              </div>
+              <div style="display:flex;gap:12px;align-items:center">
+                <input type="range" min="{{ i.min }}" max="{{ i.max }}" step="{{ i.step }}" value="{{ i.val }}" onChange="{{ i.set }}" style="flex:1;min-width:0">
+                <input type="number" min="{{ i.min }}" max="{{ i.max }}" step="{{ i.step }}" value="{{ i.val }}" onChange="{{ i.set }}" style="width:74px;background:#0a1120;border:1px solid #4f3d22;color:#dfe7f2;font-family:Spectral,serif;font-size:13px;padding:5px 7px;text-align:right">
+                <span style="font-size:12px;color:#68758c;width:26px">{{ i.unit }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <button onClick="{{ resetProj }}" title="Reset income, spending, invested share, return, volatility and withdrawal rate to defaults derived from your ledger and latest snapshot (investment transfers excluded from income & spending)" style="width:100%;margin-top:14px;font-family:Cinzel,serif;font-size:10px;letter-spacing:.16em;padding:8px 6px;cursor:pointer;background:rgba(217,176,106,.06);color:#a8b4c7;border:1px solid #4f3d22" style-hover="border-color:#7a5c33">↺ RESET TO LEDGER DEFAULTS</button>
+        <sc-if value="{{ hasDefNote }}" hint-placeholder-val="{{ true }}">
+          <div style="font-size:11px;color:#68758c;font-style:italic;margin-top:6px;line-height:1.4">{{ defNote }}</div>
+        </sc-if>
+        <div style="margin-top:20px;padding:12px 14px;border:1px solid {{ savingsBd }};background:{{ savingsBg }}">
+          <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.24em;color:#a8b4c7">MONTHLY SAVINGS</div>
+          <div style="font-family:Cinzel,serif;font-size:20px;font-weight:600;color:{{ savingsColor }};margin-top:3px">{{ savingsF }}</div>
+          <div style="font-size:12px;color:#68758c;font-style:italic;margin-top:2px">{{ savingsNote }}</div>
+          <sc-if value="{{ hasNetInv }}" hint-placeholder-val="{{ true }}">
+            <div style="font-size:11px;color:#5f9e94;font-style:italic;margin-top:6px;border-top:1px solid rgba(20,184,166,.18);padding-top:6px">{{ netInvNote }}</div>
+          </sc-if>
+        </div>
+        <div style="display:flex;gap:0;margin-top:18px">
+          <button onClick="{{ mcOff }}" style="flex:1;font-family:Cinzel,serif;font-size:10px;letter-spacing:.16em;padding:8px 6px;cursor:pointer;background:{{ detBg }};color:{{ detFg }};border:1px solid #7a5c33;border-right:none">DETERMINISTIC</button>
+          <button onClick="{{ mcOn }}" style="flex:1;font-family:Cinzel,serif;font-size:10px;letter-spacing:.16em;padding:8px 6px;cursor:pointer;background:{{ mcBg }};color:{{ mcFg }};border:1px solid #7a5c33">MONTE CARLO</button>
+        </div>
+        <button onClick="{{ toggleInfl }}" style="width:100%;margin-top:10px;font-family:Cinzel,serif;font-size:10px;letter-spacing:.16em;padding:8px 6px;cursor:pointer;background:{{ inflBg }};color:{{ inflFg }};border:1px solid #3d5878" style-hover="border-color:#7a5c33">{{ inflLabel }}</button>
+      </div>
+
+      <!-- outputs -->
+      <div style="min-width:0">
+        <div style="display:flex;gap:36px;flex-wrap:wrap;align-items:flex-end;margin-bottom:18px">
+          <div>
+            <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.26em;color:#7e8ba0">FI NUMBER</div>
+            <div style="font-family:Cinzel,serif;font-size:40px;font-weight:700;color:#ecd39a;text-shadow:0 0 18px rgba(217,176,106,.3);line-height:1.1">{{ fiF }}</div>
+            <div style="font-size:12px;color:#68758c;font-style:italic">{{ fiFormula }}</div>
+          </div>
+          <div style="flex:1;min-width:220px;padding-bottom:6px">
+            <div style="display:flex;justify-content:space-between;font-family:Cinzel,serif;font-size:10px;letter-spacing:.26em;color:#7e8ba0;margin-bottom:6px"><span>FI PROGRESS</span><span style="color:#8ab6d9">{{ fiPct }}%</span></div>
+            <div style="height:12px;border:1px solid #4f3d22;background:rgba(255,255,255,.02);position:relative">
+              <div style="position:absolute;inset:1px auto 1px 1px;width:{{ fiPctW }}%;background:linear-gradient(90deg,#4d82ab,#7fb4d8);box-shadow:0 0 12px rgba(127,180,216,.5)"></div>
+            </div>
+          </div>
+          <div style="padding-bottom:2px">
+            <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.26em;color:#7e8ba0">{{ verdictLabel }}</div>
+            <div style="font-family:Cinzel,serif;font-size:21px;font-weight:600;color:{{ verdictColor }};margin-top:4px">{{ verdictMain }}</div>
+            <div style="font-size:12px;color:#68758c;font-style:italic;margin-top:2px">{{ verdictSub }}</div>
+          </div>
+          <sc-if value="{{ mc }}" hint-placeholder-val="{{ false }}">
+            <div style="padding-bottom:2px">
+              <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.26em;color:#7e8ba0">ODDS OF FI IN HORIZON</div>
+              <div style="font-family:Cinzel,serif;font-size:21px;font-weight:600;color:#7fb4d8;margin-top:4px">{{ mcProb }}</div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="position:relative">
+          <svg viewBox="0 0 980 330" style="width:100%;display:block">
+            <path d="{{ pGrid }}" stroke="rgba(217,176,106,.1)" stroke-width="1" fill="none"></path>
+            <polygon points="{{ pBand }}" fill="rgba(127,180,216,.13)" stroke="none"></polygon>
+            <line x1="{{ pFiX1 }}" y1="{{ pFiY }}" x2="{{ pFiX2 }}" y2="{{ pFiY }}" stroke="#d9b06a" stroke-width="1" stroke-dasharray="7 5" opacity="{{ pFiOp }}"></line>
+            <polyline points="{{ pHist }}" fill="none" stroke="#7fb4d8" stroke-width="2.5"></polyline>
+            <polyline points="{{ pProj }}" fill="none" stroke="#d9b06a" stroke-width="2" stroke-dasharray="6 5"></polyline>
+            <polyline points="{{ pP10 }}" fill="none" stroke="rgba(127,180,216,.5)" stroke-width="1"></polyline>
+            <polyline points="{{ pP90 }}" fill="none" stroke="rgba(127,180,216,.5)" stroke-width="1"></polyline>
+            <path d="{{ pMarks }}" fill="#ecd39a" stroke="#4f3517" stroke-width="1"></path>
+          </svg>
+          <sc-for list="{{ pYTicks }}" as="t" hint-placeholder-count="4">
+            <div style="position:absolute;left:0;top:{{ t.pct }}%;transform:translateY(-50%);font-size:11px;color:#68758c">{{ t.label }}</div>
+          </sc-for>
+          <sc-for list="{{ pXTicks }}" as="t" hint-placeholder-count="6">
+            <div style="position:absolute;left:{{ t.pct }}%;bottom:-2px;transform:translateX(-50%);font-family:Cinzel,serif;font-size:10px;letter-spacing:.1em;color:#68758c">{{ t.label }}</div>
+          </sc-for>
+          <div style="position:absolute;right:0;top:{{ pFiLabelPct }}%;transform:translateY(-110%);font-family:Cinzel,serif;font-size:10px;letter-spacing:.18em;color:#d9b06a;opacity:{{ pFiOp }}">FI · {{ fiF }}</div>
+        </div>
+        <div style="display:flex;gap:20px;margin-top:8px;font-size:12px;color:#68758c;flex-wrap:wrap">
+          <span><span style="display:inline-block;width:18px;height:2px;background:#7fb4d8;vertical-align:middle;margin-right:6px"></span>recorded</span>
+          <span><span style="display:inline-block;width:18px;height:0;border-top:2px dashed #d9b06a;vertical-align:middle;margin-right:6px"></span>{{ projLegend }}</span>
+          <sc-if value="{{ mc }}" hint-placeholder-val="{{ false }}"><span><span style="display:inline-block;width:18px;height:8px;background:rgba(127,180,216,.2);vertical-align:middle;margin-right:6px"></span>10th–90th percentile</span></sc-if>
+        </div>
+
+        <sc-if value="{{ showMilestones }}" hint-placeholder-val="{{ true }}">
+          <div style="margin-top:22px">
+            <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.28em;color:#7e8ba0;margin-bottom:10px">WAYPOINTS ON THE ROAD</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px">
+              <sc-for list="{{ milestones }}" as="ms" hint-placeholder-count="4">
+                <div style="border:1px solid rgba(217,176,106,.18);background:rgba(255,255,255,.015);padding:10px 13px;display:flex;gap:11px;align-items:center">
+                  <div style="width:9px;height:9px;transform:rotate(45deg);background:{{ ms.color }};flex:0 0 auto"></div>
+                  <div style="min-width:0">
+                    <div style="font-size:13px;color:#c9d4e3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ms.name }} · <span style="color:#d9b06a">{{ ms.amtF }}</span></div>
+                    <div style="font-size:12px;color:#68758c;font-style:italic">{{ ms.when }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+        <div style="margin-top:18px;font-size:12px;color:#5d6980;font-style:italic">{{ caveat }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ NET WORTH ═══════════ -->
+  <div data-screen-label="Net worth" style="grid-column:span 6;background:linear-gradient(165deg,#101a2d,#0b1322 55%,#0a1120);border:1px solid #6d5330;box-shadow:inset 0 0 0 1px rgba(217,176,106,.07), inset 0 0 60px rgba(3,7,14,.5), 0 16px 36px rgba(0,0,0,.4);padding:26px 28px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+      <div style="font-family:Cinzel,serif;font-size:14px;font-weight:600;letter-spacing:.3em;color:#ecd39a">HOLDINGS OVER TIME</div>
+      <div style="display:flex;gap:0">
+        <button onClick="{{ nwLine }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.14em;padding:6px 12px;cursor:pointer;background:{{ nwLineBg }};color:{{ nwLineFg }};border:1px solid #7a5c33;border-right:none">LINE</button>
+        <button onClick="{{ nwStack }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.14em;padding:6px 12px;cursor:pointer;background:{{ nwStackBg }};color:{{ nwStackFg }};border:1px solid #7a5c33">BY ASSET</button>
+      </div>
+    </div>
+    <div style="position:relative">
+      <svg viewBox="0 0 700 250" style="width:100%;display:block">
+        <path d="{{ nwGrid }}" stroke="rgba(217,176,106,.1)" stroke-width="1" fill="none"></path>
+        <polygon points="{{ nw.a0 }}" fill="{{ nw.k0 }}" opacity="{{ nw.o0 }}" onMouseEnter="{{ nw.e0 }}" onMouseLeave="{{ nwLeave }}" style="filter:{{ nw.f0 }};transition:opacity .15s"></polygon>
+        <polygon points="{{ nw.a1 }}" fill="{{ nw.k1 }}" opacity="{{ nw.o1 }}" onMouseEnter="{{ nw.e1 }}" onMouseLeave="{{ nwLeave }}" style="filter:{{ nw.f1 }};transition:opacity .15s"></polygon>
+        <polygon points="{{ nw.a2 }}" fill="{{ nw.k2 }}" opacity="{{ nw.o2 }}" onMouseEnter="{{ nw.e2 }}" onMouseLeave="{{ nwLeave }}" style="filter:{{ nw.f2 }};transition:opacity .15s"></polygon>
+        <polygon points="{{ nw.a3 }}" fill="{{ nw.k3 }}" opacity="{{ nw.o3 }}" onMouseEnter="{{ nw.e3 }}" onMouseLeave="{{ nwLeave }}" style="filter:{{ nw.f3 }};transition:opacity .15s"></polygon>
+        <polygon points="{{ nw.a4 }}" fill="{{ nw.k4 }}" opacity="{{ nw.o4 }}" onMouseEnter="{{ nw.e4 }}" onMouseLeave="{{ nwLeave }}" style="filter:{{ nw.f4 }};transition:opacity .15s"></polygon>
+        <polyline points="{{ nw.line }}" fill="none" stroke="#7fb4d8" stroke-width="2.5"></polyline>
+        <path d="{{ nw.dots }}" fill="#ecd39a" stroke="#4f3517" stroke-width="1"></path>
+      </svg>
+      <sc-for list="{{ nwYTicks }}" as="t" hint-placeholder-count="3">
+        <div style="position:absolute;left:0;top:{{ t.pct }}%;transform:translateY(-50%);font-size:11px;color:#68758c">{{ t.label }}</div>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-family:Cinzel,serif;font-size:10px;letter-spacing:.14em;color:#68758c;padding:6px 24px 0 54px">
+      <sc-for list="{{ nwMonths }}" as="m" hint-placeholder-count="6"><span>{{ m.label }}</span></sc-for>
+    </div>
+    <sc-if value="{{ nwPartial }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:12px;border-left:2px solid #7a5c33;padding:2px 0 2px 10px;font-size:11px;color:#a3915f;font-style:italic">{{ nwPartialNote }}</div>
+    </sc-if>
+    <sc-if value="{{ nwStacked }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px">
+        <sc-for list="{{ assetLegend }}" as="l" hint-placeholder-count="5">
+          <div onMouseEnter="{{ l.enter }}" onMouseLeave="{{ l.leave }}" style="display:flex;align-items:center;gap:6px;font-size:12px;color:{{ l.txt }};cursor:default;transition:color .15s"><div style="width:9px;height:9px;transform:rotate(45deg);background:{{ l.color }};box-shadow:{{ l.glow }};transition:box-shadow .15s"></div>{{ l.name }}</div>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- ═══════════ ASSET BREAKDOWN ═══════════ -->
+  <div data-screen-label="Assets" style="grid-column:span 6;background:linear-gradient(165deg,#101a2d,#0b1322 55%,#0a1120);border:1px solid #6d5330;box-shadow:inset 0 0 0 1px rgba(217,176,106,.07), inset 0 0 60px rgba(3,7,14,.5), 0 16px 36px rgba(0,0,0,.4);padding:26px 28px">
+    <div style="font-family:Cinzel,serif;font-size:14px;font-weight:600;letter-spacing:.3em;color:#ecd39a;margin-bottom:18px">CHESTS</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+      <div>
+        <div style="display:flex;align-items:flex-end;gap:14px;height:180px;padding:0 6px">
+          <sc-for list="{{ assetBars }}" as="ab" hint-placeholder-count="6">
+            <div style="flex:1;display:flex;flex-direction:column-reverse;height:{{ ab.h }}%;min-width:0;box-shadow:0 0 16px rgba(0,0,0,.35)">
+              <sc-for list="{{ ab.segs }}" as="s"><div onMouseEnter="{{ s.enter }}" onMouseLeave="{{ s.leave }}" style="height:{{ s.h }}%;background:{{ s.color }};filter:{{ s.filter }};transition:filter .15s" style-hover="filter:brightness(1.3)"></div></sc-for>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:14px;padding:8px 6px 0">
+          <sc-for list="{{ assetBars }}" as="ab" hint-placeholder-count="6"><div style="flex:1;text-align:center;font-family:Cinzel,serif;font-size:10px;letter-spacing:.1em;color:#68758c">{{ ab.label }}</div></sc-for>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.24em;color:#7e8ba0;margin-bottom:12px">ALLOCATION · {{ latestMonthLabel }}</div>
+        <sc-if value="{{ latestPartial }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-bottom:12px;border-left:2px solid #7a5c33;padding:2px 0 2px 10px;font-size:11px;color:#a3915f;font-style:italic">{{ latestPartialNote }}</div>
+        </sc-if>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <sc-for list="{{ allocation }}" as="a" hint-placeholder-count="5">
+            <div onMouseEnter="{{ a.enter }}" onMouseLeave="{{ a.leave }}" style="cursor:default">
+              <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px"><span style="color:#a8b4c7">{{ a.name }}</span><span style="color:#dfe7f2">{{ a.amtF }} · <span style="color:#8ab6d9">{{ a.pct }}%</span></span></div>
+              <div style="height:13px;background:rgba(255,255,255,.03);border:1px solid rgba(217,176,106,.15);position:relative"><div style="position:absolute;inset:1px auto 1px 1px;width:{{ a.pct }}%;background:{{ a.color }};box-shadow:{{ a.shadow }};filter:{{ a.filter }};transition:box-shadow .15s, filter .15s"></div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+    <sc-if value="{{ holdingsAvail }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-top:18px;border-top:1px solid rgba(217,176,106,.14);padding-top:14px">
+        <button onClick="{{ toggleHoldings }}" style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.2em;padding:7px 14px;cursor:pointer;background:transparent;color:#8ab6d9;border:1px solid #3d5878" style-hover="color:#ecd39a;border-color:#7a5c33">{{ holdingsLabel }}</button>
+        <sc-if value="{{ showHoldings }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="display:flex;flex-direction:column;gap:7px;margin-top:12px">
+              <sc-for list="{{ holdings }}" as="h" hint-placeholder-count="5">
+                <div style="display:grid;grid-template-columns:58px minmax(0,1fr) 110px auto auto auto;gap:14px;align-items:center;border:1px solid rgba(217,176,106,.14);background:rgba(255,255,255,.015);padding:8px 12px">
+                  <div style="font-family:Cinzel,serif;font-size:12px;letter-spacing:.12em;color:#ecd39a">{{ h.ticker }}</div>
+                  <div style="font-size:12px;color:#68758c;font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ h.desc }}</div>
+                  <svg viewBox="0 0 110 26" style="width:110px;height:26px;display:block;overflow:visible">
+                    <polyline points="{{ h.cbPts }}" fill="none" stroke="#7a5c33" stroke-width="1.5" stroke-dasharray="3 2"></polyline>
+                    <polyline points="{{ h.mvPts }}" fill="none" stroke="#8ab6d9" stroke-width="1.75"></polyline>
+                  </svg>
+                  <div style="font-size:12px;color:#8ab6d9;white-space:nowrap">{{ h.share }}%</div>
+                  <div style="font-size:13px;color:#dfe7f2;white-space:nowrap">{{ h.amtF }}</div>
+                  <div style="font-size:12px;color:{{ h.plColor }};white-space:nowrap">{{ h.pl }} P&amp;L</div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:16px;align-items:center;font-size:11px;color:#5d6980;font-style:italic;margin-top:8px;flex-wrap:wrap">
+              <span>from your IBKR statement · unrealized P&amp;L in each holding's own currency</span>
+              <span style="display:flex;align-items:center;gap:5px"><svg viewBox="0 0 18 6" style="width:18px;height:6px"><polyline points="0,3 18,3" fill="none" stroke="#8ab6d9" stroke-width="1.75"></polyline></svg>market value</span>
+              <span style="display:flex;align-items:center;gap:5px"><svg viewBox="0 0 18 6" style="width:18px;height:6px"><polyline points="0,3 18,3" fill="none" stroke="#7a5c33" stroke-width="1.5" stroke-dasharray="3 2"></polyline></svg>cost basis</span>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- ═══════════ INCOME & SAVINGS RATE ═══════════ -->
+  <div data-screen-label="Income" style="grid-column:span 6;background:linear-gradient(165deg,#101a2d,#0b1322 55%,#0a1120);border:1px solid #6d5330;box-shadow:inset 0 0 0 1px rgba(217,176,106,.07), inset 0 0 60px rgba(3,7,14,.5), 0 16px 36px rgba(0,0,0,.4);padding:26px 28px">
+    <div style="font-family:Cinzel,serif;font-size:14px;font-weight:600;letter-spacing:.3em;color:#ecd39a;margin-bottom:18px">INCOME &amp; SAVINGS RATE</div>
+    <sc-if value="{{ noIncome }}" hint-placeholder-val="{{ false }}">
+      <div style="border:1px dashed rgba(127,180,216,.35);padding:46px 24px;text-align:center">
+        <div style="font-family:Cinzel,serif;font-size:13px;letter-spacing:.24em;color:#8ab6d9">NO INCOME RECORDED YET</div>
+        <div style="font-size:13px;color:#68758c;font-style:italic;margin-top:8px">When the first paycheck lands, this chart wakes up. Until then, set a hypothetical income in the Divination card above.</div>
+      </div>
+    </sc-if>
+    <sc-if value="{{ hasIncome }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <div style="display:flex;align-items:flex-end;gap:18px;height:170px;padding:0 6px">
+          <sc-for list="{{ incMonths }}" as="im" hint-placeholder-count="7">
+            <div style="flex:1;display:flex;align-items:flex-end;justify-content:center;gap:5px;height:100%">
+              <div style="width:34%;height:{{ im.incH }}%;background:linear-gradient(180deg,#7fb4d8,#4d82ab);box-shadow:0 0 8px rgba(127,180,216,.3)"></div>
+              <div style="width:34%;height:{{ im.spendH }}%;background:linear-gradient(180deg,#d9b06a,#7a5427)"></div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:18px;padding:8px 6px 0">
+          <sc-for list="{{ incMonths }}" as="im" hint-placeholder-count="7">
+            <div style="flex:1;text-align:center">
+              <div style="font-family:Cinzel,serif;font-size:10px;letter-spacing:.1em;color:#68758c">{{ im.label }}</div>
+              <div style="font-size:11px;color:{{ im.rateColor }};margin-top:2px">{{ im.rate }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:20px;margin-top:14px;font-size:12px;color:#68758c">
+          <span><span style="display:inline-block;width:10px;height:10px;background:#7fb4d8;vertical-align:middle;margin-right:6px"></span>income</span>
+          <span><span style="display:inline-block;width:10px;height:10px;background:#d9b06a;vertical-align:middle;margin-right:6px"></span>spending</span>
+          <span style="font-style:italic">% = savings rate per month</span>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- ═══════════ RECURRING RADAR ═══════════ -->
+  <div data-screen-label="Recurring" style="grid-column:span 6;background:linear-gradient(165deg,#101a2d,#0b1322 55%,#0a1120);border:1px solid #6d5330;box-shadow:inset 0 0 0 1px rgba(217,176,106,.07), inset 0 0 60px rgba(3,7,14,.5), 0 16px 36px rgba(0,0,0,.4);padding:26px 28px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+      <div style="font-family:Cinzel,serif;font-size:14px;font-weight:600;letter-spacing:.3em;color:#ecd39a">SUBSCRIPTIONS</div>
+      <div style="font-size:12px;color:#68758c;font-style:italic">tagged &amp; detected recurring costs</div>
+    </div>
+    <div style="display:flex;gap:30px;align-items:baseline;margin-bottom:14px;flex-wrap:wrap">
+      <div><span style="font-family:Cinzel,serif;font-size:24px;font-weight:600;color:#ecd39a">{{ fixedMonthlyF }}</span><span style="font-size:12px;color:#68758c;font-style:italic"> / month fixed burn</span></div>
+      <div style="font-size:13px;color:#a8b4c7">fixed <span style="color:#d9b06a">{{ fixedShare }}%</span> · variable <span style="color:#8ab6d9">{{ varShare }}%</span> of all spending</div>
+    </div>
+    <div style="height:10px;border:1px solid #4f3d22;background:rgba(255,255,255,.02);margin-bottom:18px;position:relative">
+      <div style="position:absolute;inset:1px auto 1px 1px;width:{{ fixedShare }}%;background:linear-gradient(90deg,#7a5427,#d9b06a)"></div>
+    </div>
+    <sc-if value="{{ noRecurring }}" hint-placeholder-val="{{ false }}">
+      <div style="font-size:13px;color:#68758c;font-style:italic;padding:12px 0">No recurring enchantments detected yet — patterns need at least three months to reveal themselves.</div>
+    </sc-if>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <sc-for list="{{ recItems }}" as="ri" hint-placeholder-count="4">
+        <div style="display:grid;grid-template-columns:1fr auto auto auto auto;gap:16px;align-items:center;border:1px solid rgba(217,176,106,.14);background:rgba(255,255,255,.015);padding:9px 13px">
+          <div style="font-size:13px;color:#c9d4e3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ ri.name }} <span style="font-size:11px;color:#5d6980;font-style:italic">{{ ri.tag }}</span></div>
+          <div style="font-size:13px;color:#d9b06a;white-space:nowrap">{{ ri.monthlyF }}<span style="color:#68758c;font-size:11px">/mo</span></div>
+          <div style="font-size:12px;color:#68758c;white-space:nowrap">{{ ri.months }} mo</div>
+          <div style="font-size:12px;color:#a8b4c7;white-space:nowrap">{{ ri.totalF }} total</div>
+          <button onClick="{{ ri.dismiss }}" title="dismiss false positive" style="background:transparent;border:1px solid rgba(217,176,106,.25);color:#7e8ba0;cursor:pointer;font-size:11px;padding:3px 8px;font-family:Cinzel,serif" style-hover="color:#ecd39a;border-color:#d9b06a">✕</button>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ hasDismissed }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ restoreAll }}" style="margin-top:12px;font-family:Cinzel,serif;font-size:10px;letter-spacing:.18em;padding:6px 14px;cursor:pointer;background:transparent;color:#8ab6d9;border:1px solid #3d5878" style-hover="color:#ecd39a;border-color:#7a5c33">{{ restoreLabel }}</button>
+    </sc-if>
+  </div>
+
+  <!-- ═══════════ PRICE TRENDS ═══════════ -->
+  <div data-screen-label="Price trends" style="grid-column:span 12;background:linear-gradient(165deg,#101a2d,#0b1322 55%,#0a1120);border:1px solid #6d5330;box-shadow:inset 0 0 0 1px rgba(217,176,106,.07), inset 0 0 60px rgba(3,7,14,.5), 0 16px 36px rgba(0,0,0,.4);padding:26px 28px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:6px">
+      <div style="font-family:Cinzel,serif;font-size:14px;font-weight:600;letter-spacing:.3em;color:#ecd39a">PRICE TRENDS</div>
+      <div style="display:flex;gap:18px;align-items:center;font-size:12px;color:#68758c;flex-wrap:wrap">
+        <span style="display:flex;align-items:center;gap:6px"><svg viewBox="0 0 18 6" style="width:18px;height:6px"><polyline points="0,3 18,3" fill="none" stroke="#c9d4e3" stroke-width="1.25" opacity=".75"></polyline></svg>daily close</span>
+        <span style="display:flex;align-items:center;gap:6px"><svg viewBox="0 0 18 6" style="width:18px;height:6px"><polyline points="0,3 18,3" fill="none" stroke="#d9b06a" stroke-width="2"></polyline></svg>{{ pxFastLabel }}</span>
+        <span style="display:flex;align-items:center;gap:6px"><svg viewBox="0 0 18 6" style="width:18px;height:6px"><polyline points="0,3 18,3" fill="none" stroke="#7fb4d8" stroke-width="2"></polyline></svg>{{ pxSlowLabel }}</span>
+        <span style="display:flex;align-items:center;gap:6px"><svg viewBox="0 0 10 10" style="width:9px;height:9px"><path d="M5,0 L10,5 L5,10 L0,5 Z" fill="#8fd0a0"></path></svg>golden cross</span>
+        <span style="display:flex;align-items:center;gap:6px"><svg viewBox="0 0 10 10" style="width:9px;height:9px"><path d="M5,0 L10,5 L5,10 L0,5 Z" fill="#d98a6a"></path></svg>death cross</span>
+      </div>
+    </div>
+    <div style="font-size:12px;color:#68758c;font-style:italic;margin-bottom:16px">{{ pxSub }}</div>
+    <sc-if value="{{ pxNone }}" hint-placeholder-val="{{ false }}">
+      <div style="border:1px dashed rgba(127,180,216,.35);padding:40px 24px;text-align:center">
+        <div style="font-family:Cinzel,serif;font-size:13px;letter-spacing:.24em;color:#8ab6d9">NO PRICE HISTORY YET</div>
+        <div style="font-size:13px;color:#68758c;font-style:italic;margin-top:8px">Run ma_cross_alert.bat (it saves the prices these charts use), then python export.py or python serve.py.</div>
+      </div>
+    </sc-if>
+    <div style="display:grid;grid-template-columns:{{ pxCols }};gap:0">
+    <sc-for list="{{ pxGroups }}" as="g" hint-placeholder-count="2">
+      <div style="min-width:0;padding:{{ g.pad }};border-left:{{ g.rule }}">
+        <div style="font-family:Cinzel,serif;font-size:14px;font-weight:600;letter-spacing:.26em;color:#a8b4c7;margin-bottom:12px">{{ g.title }}</div>
+        <div style="display:grid;grid-template-columns:{{ g.cols }};gap:14px">
+          <sc-for list="{{ g.panels }}" as="p" hint-placeholder-count="3">
+            <div style="border:1px solid {{ p.k.bd }};background:{{ p.k.bg }};padding:11px 13px 8px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px">
+                <div style="font-family:Cinzel,serif;font-size:13px;letter-spacing:.12em;color:#ecd39a">{{ p.ticker }} <span style="font-family:Spectral,Georgia,serif;font-size:11px;letter-spacing:0;color:#5d6980;font-style:italic">{{ p.symbol }}</span></div>
+                <div style="font-size:12px;color:{{ p.stateColor }};white-space:nowrap">{{ p.state }}</div>
+              </div>
+              <div style="font-size:12px;color:#a8b4c7;margin:3px 0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:16px">{{ p.readout }}</div>
+              <svg viewBox="0 0 340 150" onMouseMove="{{ p.move }}" onMouseLeave="{{ pxLeave }}" style="width:100%;display:block;cursor:crosshair">
+                <path d="{{ p.grid }}" stroke="rgba(217,176,106,.1)" stroke-width="1" fill="none"></path>
+                <path d="{{ p.close }}" fill="none" stroke="{{ p.k.close }}" stroke-width="1.25" opacity=".75" stroke-linejoin="round"></path>
+                <path d="{{ p.slow }}" fill="none" stroke="{{ p.k.slow }}" stroke-width="2" stroke-linejoin="round"></path>
+                <path d="{{ p.fast }}" fill="none" stroke="{{ p.k.fast }}" stroke-width="2" stroke-linejoin="round"></path>
+                <path d="{{ p.golden }}" fill="{{ p.k.golden }}" stroke="#0b1322" stroke-width="1.5"></path>
+                <path d="{{ p.death }}" fill="{{ p.k.death }}" stroke="#0b1322" stroke-width="1.5"></path>
+                <path d="{{ p.hoverLine }}" stroke="rgba(236,211,154,.45)" stroke-width="1" fill="none"></path>
+                <path d="{{ p.hoverDots }}" fill="{{ p.k.dot }}" stroke="#0b1322" stroke-width="1.5"></path>
+                <sc-for list="{{ p.yTicks }}" as="t"><text x="304" y="{{ t.y }}" font-size="10" fill="#68758c" dominant-baseline="middle" font-family="Spectral,Georgia,serif">{{ t.label }}</text></sc-for>
+                <sc-for list="{{ p.xTicks }}" as="t"><text x="{{ t.x }}" y="146" font-size="9" fill="#68758c" text-anchor="middle" font-family="Cinzel,serif" letter-spacing="1">{{ t.label }}</text></sc-for>
+              </svg>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+    </div>
+  </div>
+
+  </div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;mcRuns&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:1000,&quot;min&quot;:200,&quot;max&quot;:4000,&quot;step&quot;:100,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Simulation&quot;},&quot;showMilestones&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Chart&quot;},&quot;tableRows&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:12,&quot;min&quot;:6,&quot;max&quot;:40,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Table&quot;}}">
+class Component extends DCLogic {
+  state = {
+    data: null, cats: [], q: '', view: 'totals',
+    dFrom: 0, dTo: 1, span: 1, aMin: -10, aMax: 600, amtFloor: -10, amtCeil: 600,
+    sortKey: 'date', sortDir: -1, rowsShown: 0, tagSel: [], showHoldings: false, pxHover: null,
+    nwStacked: false, mc: false, mcData: null, inflOn: true, exInv: true,
+    inc: null, spend: null, investPct: 80, ret: 6, vol: 15, swr: 4, infl: 2.5, horizon: 30, coastYears: 35, retireYears: 50,
+    dismissed: [],
+    expFlip: false, meanFlip: false,
+    iCats: [], iTags: [], iq: '', iView: 'totals',
+    iDFrom: 0, iDTo: 1, iSpan: 1, iAMin: 0, iAMax: 1000, iAmtFloor: 0, iAmtCeil: 1000,
+    iSortKey: 'date', iSortDir: -1, iRowsShown: 0
+  };
+  CATC = {bills:'#e06c5d',clothes:'#4dd0e1',food:'#ffd24d',gifts:'#ff6fae',health:'#7a5cff',holiday:'#d4b483',investment:'#14b8a6',learning:'#ff8a5c',leisure:'#4ade80',misc:'#9aa7bd',software:'#2f9bff',transport:'#c084fc'};
+  ASSC = {bonds:'#8a6230',cash_foreign:'#a3cbe8',cash_local:'#3f6a8f',stocks_foreign:'#d8b57a',stocks_local:'#84aecd'};
+  ICATC = {salary:'#7fb4d8',hustle:'#8fd0a0',interest:'#d9b06a',gift:'#c084fc',investment:'#14b8a6'};
+  // `investment` is a transfer, not consumption/earnings: an investment EXPENSE
+  // is cash sent to the broker, investment INCOME is cash swept back out (e.g.
+  // uninvested IBKR cash returning to savings). They net against each other and
+  // stay out of the burn rate and the take-home figure. Same word in both
+  // tables, so one constant covers both.
+  XFER = 'investment';
+  MN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  componentDidMount(){
+    let saved = {}, dism = [];
+    try { saved = JSON.parse(localStorage.getItem('bronze-ledger.proj')) || {}; } catch(e){}
+    // one-time: real-terms is now the default view — flip a previously-saved nominal
+    // once (guarded by a flag so a later deliberate nominal choice sticks).
+    try { if(!localStorage.getItem('bronze-ledger.inflDefaulted')){ if(saved.inflOn===false) saved.inflOn = true; localStorage.setItem('bronze-ledger.inflDefaulted','1'); } } catch(e){}
+    // one-time: spend / return / σ / SWR defaults became data-driven — drop the
+    // old fixed values a previous visit persisted so the new ones take effect.
+    try { if(!localStorage.getItem('bronze-ledger.evidenceDefaults')){ ['spend','ret','vol','swr'].forEach(k=>delete saved[k]); localStorage.setItem('bronze-ledger.evidenceDefaults','1'); } } catch(e){}
+    try { dism = JSON.parse(localStorage.getItem('bronze-ledger.dismissed')) || []; } catch(e){}
+    this.setState(Object.assign({dismissed: dism}, saved));
+    fetch('uploads/sample_data.json').then(r=>r.json()).then(data=>{
+      const d0 = this.pd(data.meta.date_min), d1 = this.pd(data.meta.date_max);
+      const span = Math.max(1, Math.round((d1-d0)/864e5));
+      const st = {data, span, dFrom:0, dTo:span,
+        amtFloor: Math.floor(data.meta.amount_min), amtCeil: Math.ceil(data.meta.amount_max)};
+      st.aMin = st.amtFloor; st.aMax = st.amtCeil;
+      const iAmts = (data.income||[]).map(e=>e.amount);
+      st.iSpan = span; st.iDFrom = 0; st.iDTo = span;
+      st.iAmtFloor = iAmts.length ? Math.floor(Math.min(...iAmts)) : 0;
+      st.iAmtCeil = iAmts.length ? Math.ceil(Math.max(...iAmts)) : 1000;
+      st.iAMin = st.iAmtFloor; st.iAMax = st.iAmtCeil;
+      const def = this.projDefaults(data);
+      if (saved.spend == null) st.spend = def.spend;
+      if (saved.inc == null) st.inc = def.inc;
+      ['investPct','ret','vol','swr'].forEach(k=>{ if (saved[k] == null && def[k] != null) st[k] = def[k]; });
+      this.setState(st);
+    }).catch(e=>console.error('data load failed', e));
+  }
+  pd(s){ return new Date(s+'T00:00:00Z'); }
+  fullKeys(data){
+    const keys = this.monthKeys(data);
+    const end = this.pd(data.meta.date_max);
+    const eom = new Date(Date.UTC(end.getUTCFullYear(), end.getUTCMonth()+1, 0));
+    return end.getUTCDate() === eom.getUTCDate() ? keys : keys.slice(0,-1);
+  }
+  monthKeys(data){
+    const out = []; const end = this.pd(data.meta.date_max);
+    let d = this.pd(data.meta.date_min); d = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1));
+    while (d <= end) { out.push(d.toISOString().slice(0,7)); d = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth()+1, 1)); }
+    return out;
+  }
+  fmt(x){ const s = x<0?'−S$':'S$'; return s + Math.abs(x).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+  fmt0(x){ const s = x<0?'−S$':'S$'; return s + Math.abs(Math.round(x)).toLocaleString('en-US'); }
+  fmtK(x){ const a=Math.abs(x), s=x<0?'−':''; if(a>=1e6) return s+'S$'+(a/1e6).toFixed(2)+'M'; if(a>=1e3) return s+'S$'+Math.round(a/1e3)+'k'; return s+'S$'+Math.round(a); }
+  nice(x){ if(x<=0) return 1; const p=Math.pow(10,Math.floor(Math.log10(x))); const m=x/p; return (m<=1?1:m<=2?2:m<=5?5:10)*p; }
+  persist(){
+    const {inc,spend,investPct,ret,vol,swr,infl,inflOn,horizon,coastYears,retireYears,mc,exInv} = this.state;
+    try { localStorage.setItem('bronze-ledger.proj', JSON.stringify({inc,spend,investPct,ret,vol,swr,infl,inflOn,horizon,coastYears,retireYears,mc,exInv})); } catch(e){}
+  }
+  setNum(key, lo, hi){
+    return e => { let v = parseFloat(e.target.value); if(isNaN(v)) v = 0; v = Math.min(hi, Math.max(lo, v));
+      this.setState({[key]: v}, ()=>this.persist()); };
+  }
+  // Net cash actually put to work per month over `keys`: investment expenses
+  // (money sent out) minus investment income (uninvested cash swept back in).
+  // Can go negative in a month where you pulled more back than you sent.
+  netInvest(data, keys){
+    const pick = rows => (rows||[]).filter(e=>e.category===this.XFER && keys.includes(e.date.slice(0,7)))
+      .reduce((a,e)=>a+e.amount,0);
+    return pick(data.expenses) - pick(data.income);
+  }
+  // Spending default, built to resist the two ways a short plain average
+  // misleads: a one-off (a trip, a yearly renewal) landing inside the window,
+  // and ordinary month-to-month noise (swings of several hundred dollars).
+  // Everyday spending → exponentially weighted mean over up to 12 complete
+  // months (half-life SPEND_HALFLIFE), so it follows real change without being
+  // hostage to the last 3. Lumpy spending (LUMPY_CATS, or tagged `annual`) →
+  // spread evenly over the same months. `se` is one standard error of the sum.
+  LUMPY_CATS = ['holiday'];
+  SPEND_HALFLIFE = 4;
+  spendModel(data){
+    const keys = this.fullKeys(data).slice(-12), n = keys.length;
+    if(!n) return null;
+    const isLumpy = e => this.LUMPY_CATS.includes(e.category) || (e.tags||'').split(',').includes('annual');
+    const every = keys.map(()=>0), lump = keys.map(()=>0);
+    data.expenses.forEach(e=>{
+      if(e.category===this.XFER) return;
+      const i = keys.indexOf(e.date.slice(0,7)); if(i<0) return;
+      (isLumpy(e) ? lump : every)[i] += e.amount;
+    });
+    const w = keys.map((_,i)=>Math.pow(0.5, (n-1-i)/this.SPEND_HALFLIFE));
+    const sw = w.reduce((a,b)=>a+b,0), sw2 = w.reduce((a,b)=>a+b*b,0);
+    const ew = every.reduce((a,x,i)=>a+w[i]*x,0)/sw;
+    const neff = sw*sw/sw2;   // effective sample size of the weighted mean
+    const ev = neff>1 ? every.reduce((a,x,i)=>a+w[i]*(x-ew)**2,0)/sw * neff/(neff-1) : 0;
+    const lm = lump.reduce((a,b)=>a+b,0)/n;
+    const lv = n>1 ? lump.reduce((a,x)=>a+(x-lm)**2,0)/(n-1) : 0;
+    return {spend: ew+lm, everyday: ew, lumpy: lm, se: Math.sqrt(ev/neff + lv/n), n};
+  }
+  // Long-run return / volatility per asset class (nominal, compound, annual).
+  // ~10 monthly returns of your own can't estimate an expected return (its
+  // standard error is ~σ/√years ≈ ±15 points), so the numbers come from long-run
+  // evidence and only the *mix* comes from your snapshots. Equities: global
+  // ~5% real over a century (Dimson–Marsh–Staunton) + ~2% inflation, shaded
+  // down for today's valuations. Bonds (SSB / T-bills / SGS): about their
+  // current yield, with near-zero price volatility. Edit here to taste.
+  ASSUME = {stocks:{ret:6.5, vol:16}, bonds:{ret:3, vol:1}};
+  allocDefaults(data){
+    const am = this.assetMonths(data), whole = am.filter(m=>!m.missing.length);
+    const m = (whole.length ? whole : am).at(-1); if(!m) return null;
+    let st = 0, bd = 0;
+    Object.entries(m.cats).forEach(([c,v])=>{ if(c.startsWith('stocks')) st+=v; else if(c==='bonds') bd+=v; });
+    if(st+bd <= 0) return null;
+    const s = st/(st+bd), b = 1-s, A = this.ASSUME;
+    return { ret: Math.round((s*A.stocks.ret + b*A.bonds.ret)*10)/10,
+             vol: Math.round(Math.sqrt((s*A.stocks.vol)**2 + (b*A.bonds.vol)**2)), stockShare: s };
+  }
+  // Withdrawal rate that survived ~95% of historical periods for a stock-heavy
+  // portfolio, by length of retirement: Bengen / Trinity for 30 years, Early
+  // Retirement Now's safe-withdrawal series for longer. Linear in between.
+  SWR_BY_YEARS = [[30,4.0],[40,3.6],[50,3.4],[60,3.3]];
+  swrFor(years){
+    const T = this.SWR_BY_YEARS;
+    if(years <= T[0][0]) return T[0][1];
+    for(let i=1;i<T.length;i++) if(years <= T[i][0]){
+      const [a,x] = T[i-1], [b,y] = T[i];
+      return Math.round((x + (y-x)*(years-a)/(b-a))*10)/10;
+    }
+    return T[T.length-1][1];
+  }
+  projDefaults(data){
+    // Income = average over the last 3 complete months; spending = spendModel();
+    // investment transfers stripped from both: sending cash to the broker isn't
+    // spending, and sweeping it back isn't income. What that net transfer
+    // *does* set is the share of savings that gets invested. Return / σ come
+    // from the latest snapshot's mix, the SWR from the retirement length.
+    const out = { swr: this.swrFor(this.state.retireYears) };
+    const al = this.allocDefaults(data); if(al){ out.ret = al.ret; out.vol = al.vol; }
+    const last3 = this.fullKeys(data).slice(-3);
+    const n = last3.length || 1;
+    if(!last3.length) return Object.assign(out, { spend: 0, inc: 0 });
+    const sumInc = (data.income||[]).filter(e=>e.category!==this.XFER && last3.includes(e.date.slice(0,7)))
+      .reduce((a,e)=>a+e.amount,0);
+    const spend = Math.round(this.spendModel(data).spend), inc = Math.round(sumInc/n);
+    out.spend = spend; out.inc = inc;
+    // Only infer the invested share when there's a real surplus and a real
+    // transfer to measure it against — otherwise keep whatever's set.
+    const invested = this.netInvest(data, last3)/n, sav = inc - spend;
+    if(invested > 0 && sav > 0) out.investPct = Math.min(100, Math.round(invested/sav*100));
+    return out;
+  }
+  resetProj(){ const {data} = this.state; if(!data) return; this.setState(this.projDefaults(data), ()=>this.persist()); }
+  filterRows(ignoreCats){
+    const {data,cats,q,dFrom,dTo,aMin,aMax,tagSel,exInv} = this.state; if(!data) return [];
+    const d0 = this.pd(data.meta.date_min).getTime();
+    const t0 = d0 + dFrom*864e5, t1 = d0 + dTo*864e5 + 864e5 - 1;
+    const toks = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    return data.expenses.filter(e=>{
+      // Transfers to the broker aren't spending — hidden unless you ask for them.
+      if(exInv && e.category===this.XFER) return false;
+      if(!ignoreCats && cats.length && !cats.includes(e.category)) return false;
+      const t = this.pd(e.date).getTime(); if(t<t0 || t>t1) return false;
+      if(e.amount < aMin || e.amount > aMax) return false;
+      if(tagSel.length){ const rt=(e.tags||'').split(','); if(!tagSel.every(t=>rt.includes(t))) return false; }
+      if(toks.length){ if(!e.note) return false; const n = e.note.toLowerCase(); if(!toks.every(k=>n.includes(k))) return false; }
+      return true;
+    });
+  }
+  filterIncome(ignoreCats){
+    const {data,iCats,iq,iDFrom,iDTo,iAMin,iAMax,iTags,exInv} = this.state; if(!data) return [];
+    // Cash swept back from the broker isn't earnings — same toggle as expenses.
+    const rows0 = (data.income||[]).filter(e=>!(exInv && e.category===this.XFER));
+    const d0 = this.pd(data.meta.date_min).getTime();
+    const t0 = d0 + iDFrom*864e5, t1 = d0 + iDTo*864e5 + 864e5 - 1;
+    const toks = iq.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    return rows0.filter(e=>{
+      if(!ignoreCats && iCats.length && !iCats.includes(e.category)) return false;
+      const t = this.pd(e.date).getTime(); if(t<t0 || t>t1) return false;
+      if(e.amount < iAMin || e.amount > iAMax) return false;
+      if(iTags.length){ const rt=(e.tags||'').split(','); if(!iTags.every(x=>rt.includes(x))) return false; }
+      if(toks.length){ if(!e.note) return false; const n = e.note.toLowerCase(); if(!toks.every(k=>n.includes(k))) return false; }
+      return true;
+    });
+  }
+  assetMonths(data = this.state.data){
+    if(!data) return [];
+    // Snapshots are monthly (month-end), but a month could still hold more than
+    // one snapshot date. Use only the latest snapshot date within each month,
+    // else net worth would be summed across both and double-count.
+    const latestDate = {};
+    data.assets.forEach(a=>{ const k=a.date.slice(0,7); if(!latestDate[k] || a.date>latestDate[k]) latestDate[k]=a.date; });
+    const by = {};
+    data.assets.forEach(a=>{ const k=a.date.slice(0,7); if(a.date!==latestDate[k]) return; (by[k]=by[k]||{key:k,date:a.date,total:0,cash:0,cats:{}}); by[k].total+=a.amount; by[k].cats[a.category]=(by[k].cats[a.category]||0)+a.amount; if(a.category.startsWith('cash')) by[k].cash+=a.amount; });
+    // export.py flags snapshots still missing a category the month before had
+    // (a statement that hasn't arrived). Their total is understated, so carry
+    // the gap through and let the charts say so rather than plot a false dip.
+    const partial = (data.meta && data.meta.partial_snapshots) || {};
+    return Object.values(by).sort((a,b)=>a.key<b.key?-1:1)
+      .map(m=>Object.assign(m, {missing: partial[m.date] || []}));
+  }
+  runDet(cash, inv, inc, spend, ip, rm, months){
+    const tot=[cash+inv]; let depleted=null; const sav=inc-spend;
+    for(let t=1;t<=months;t++){
+      inv *= 1+rm;
+      if(sav>=0){ inv += sav*ip; cash += sav*(1-ip); }
+      else { let need=-sav; const c=Math.min(cash,need); cash-=c; need-=c; if(need>0){ inv-=need; if(inv<0){ inv=0; if(depleted==null) depleted=t; } } }
+      tot.push(cash+inv);
+    }
+    return {tot, depleted};
+  }
+  maybeMC(sig, p){
+    if(!this.state.mc) return;
+    if(this._mcSig === sig) return;
+    this._mcSig = sig;
+    clearTimeout(this._mcT);
+    this._mcT = setTimeout(()=>{
+      const res = this.runMC(p);
+      this.setState({mcData: res});
+    }, 180);
+  }
+  runMC(p){
+    const {runs, months, rm, vol, cash0, inv0, ip, sav, fi} = p;
+    // Log-normal monthly returns centred on ln(1+rm): the *median* path then
+    // compounds at exactly the input return, matching the deterministic line.
+    // (Normal arithmetic draws around rm would lose ~σ²/2 a year to volatility
+    // drag — ~1.1 pts at σ 15% — and quietly undercut the stated return.)
+    const mu = Math.log(1+rm), sd = (vol/100)/Math.sqrt(12);
+    const grid = []; for(let m=0;m<=months;m++) grid.push(new Float64Array(runs));
+    let hits = 0;
+    for(let s=0;s<runs;s++){
+      let cash=cash0, inv=inv0, hit=false; grid[0][s]=cash+inv;
+      for(let t=1;t<=months;t++){
+        let u=0; while(u===0) u=Math.random(); const v=Math.random();
+        const r = Math.exp(mu + sd*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)) - 1;
+        inv *= 1+r;
+        if(sav>=0){ inv+=sav*ip; cash+=sav*(1-ip); }
+        else { let need=-sav; const c=Math.min(cash,need); cash-=c; need-=c; if(need>0) inv=Math.max(0,inv-need); }
+        const T = cash+inv; grid[t][s]=T; if(!hit && T>=fi) hit=true;
+      }
+      if(hit) hits++;
+    }
+    const q=(arr,f)=>{ const a=Array.from(arr).sort((x,y)=>x-y); return a[Math.min(a.length-1, Math.floor(f*a.length))]; };
+    const p10=[],p50=[],p90=[];
+    for(let m=0;m<=months;m++){ p10.push(q(grid[m],.1)); p50.push(q(grid[m],.5)); p90.push(q(grid[m],.9)); }
+    return {p10,p50,p90,prob: Math.round(hits/runs*100), sig: this._mcSig};
+  }
+  recurring(){
+    const {data, dismissed} = this.state; if(!data) return {items:[], fixed:0, fixedTotal:0};
+    const norm = n => (n||'').toLowerCase().replace(/\(.*?\)/g,'').replace(/\s+/g,' ').trim();
+    const key2 = t => t.split(' ').slice(0,2).join(' ');
+    const med = rows => { const a = rows.map(r=>r.amount).sort((x,y)=>x-y); return a[Math.floor(a.length/2)]; };
+    // One line per configured service (keywords.py, via meta.subscriptions), so
+    // "cloudnote" and "cloudnote subscription" notes are the same bill, not two.
+    const subs = (data.meta && data.meta.subscriptions) || [];
+    const subKey = n => { const s = subs.find(x=>n.includes(x.keyword)); return s ? s.label.toLowerCase() : null; };
+    const tagged = {}, cand = {};
+    data.expenses.forEach(e=>{
+      if(e.category===this.XFER) return;   // a monthly transfer to the broker isn't a bill
+      const tags = (e.tags||'').split(',');
+      if(tags.includes('subscription')){
+        const k = subKey((e.note||'').toLowerCase()) || key2(norm((e.note||'').split(';')[0])) || 'subscription (unlabelled)';
+        (tagged[k] = tagged[k] || {tok:k, rows:[], annual:false});
+        tagged[k].rows.push(e);
+        if(tags.includes('annual')) tagged[k].annual = true;
+      } else if(e.note){
+        e.note.toLowerCase().split(';').map(s=>s.trim()).filter(Boolean).forEach(tok=>{
+          (cand[tok] = cand[tok] || {tok, rows:[]});
+          cand[tok].rows.push(e);
+        });
+      }
+    });
+    const items = [];
+    Object.values(tagged).forEach(g=>{
+      const m = med(g.rows);
+      items.push({tok:g.tok, monthly: g.annual ? m/12 : m, months:[...new Set(g.rows.map(r=>r.date.slice(0,7)))].length,
+        total: g.rows.reduce((a,r)=>a+r.amount,0), kind: g.annual ? 'tagged · annual ÷12' : 'tagged · monthly'});
+    });
+    Object.values(cand).forEach(g=>{
+      if(tagged[subKey(g.tok)] || tagged[key2(norm(g.tok))]) return;
+      const months = [...new Set(g.rows.map(r=>r.date.slice(0,7)))];
+      const m = med(g.rows);
+      if(months.length>=3 && m>0 && g.rows.every(r=>Math.abs(r.amount-m)<=0.2*m)){
+        items.push({tok:g.tok, monthly:m, months:months.length, total:g.rows.reduce((a,r)=>a+r.amount,0), kind:'detected'});
+      }
+    });
+    items.sort((a,b)=>b.monthly-a.monthly);
+    const active = items.filter(i=>!dismissed.includes(i.tok));
+    return {items: active, fixed: active.reduce((a,i)=>a+i.monthly,0), fixedTotal: active.reduce((a,i)=>a+i.total,0), dismissedCount: items.length-active.length};
+  }
+  dLong(s){ return +s.slice(8,10)+' '+this.MN[+s.slice(5,7)-1]+' '+s.slice(0,4); }
+  // One small multiple: close + both SMAs on one price axis, crosses marked,
+  // and a hover readout of that day's values in the line above the chart.
+  // Both groups draw in the same colours; holdings panels sit on a paler blue
+  // ground (it draws the eye), the watchlist on the plain card.
+  PXK = (w=>({w, h: Object.assign({}, w, {bg:'rgba(127,180,216,.085)', bd:'rgba(127,180,216,.28)'})}))(
+    {close:'#c9d4e3', fast:'#d9b06a', slow:'#7fb4d8', golden:'#8fd0a0', death:'#d98a6a', dot:'#ecd39a',
+     bg:'rgba(255,255,255,.015)', bd:'rgba(217,176,106,.16)'});
+  pricePanel(c, key, hov, k){
+    const W=340, L=6, R=298, T=8, B=128, n=c.dates.length;
+    const all = [].concat(c.close, c.fast, c.slow).filter(v=>v!=null);
+    let lo = Math.min.apply(null, all), hi = Math.max.apply(null, all);
+    const padv = ((hi-lo)||hi||1)*0.06; lo -= padv; hi += padv;
+    const x = i=>L+(R-L)*(n>1 ? i/(n-1) : .5), y = v=>T+(B-T)*(1-(v-lo)/(hi-lo));
+    const dp = hi<20 ? 3 : 2, f = v=>v==null ? '—' : v.toFixed(dp);
+    const line = arr=>{ let d='', pen=false; arr.forEach((v,i)=>{ if(v==null){ pen=false; return; } d += (pen?'L':'M')+x(i).toFixed(1)+','+y(v).toFixed(1); pen=true; }); return d; };
+    const dia = (px,py,r)=>'M'+px.toFixed(1)+','+(py-r).toFixed(1)+'L'+(px+r).toFixed(1)+','+py.toFixed(1)+'L'+px.toFixed(1)+','+(py+r).toFixed(1)+'L'+(px-r).toFixed(1)+','+py.toFixed(1)+'Z';
+    let golden='', death='';
+    for(let i=1;i<n;i++){ const a=c.fast[i-1], b=c.slow[i-1], a2=c.fast[i], b2=c.slow[i];
+      if(a==null||b==null||a2==null||b2==null) continue;
+      if(a<=b && a2>b2) golden += dia(x(i), y(b2), 5);
+      if(a>=b && a2<b2) death += dia(x(i), y(b2), 5); }
+    const yTicks = [0,1,2].map(k=>{ const v = lo+(hi-lo)*(0.1+0.4*k); return {y:y(v).toFixed(1), label:v.toFixed(v<20?2:v<1000?1:0)}; });
+    const grid = yTicks.map(t=>'M'+L+','+t.y+'H'+R).join('');
+    const xTicks = [];
+    for(let i=1;i<n;i++) if(c.dates[i].slice(5,7)!==c.dates[i-1].slice(5,7) && x(i)>L+12 && x(i)<R-12) xTicks.push({x:x(i).toFixed(1), label:this.MN[+c.dates[i].slice(5,7)-1].toUpperCase()});
+    const last = n-1, lf=c.fast[last], ls=c.slow[last];
+    const up = lf!=null && ls!=null ? lf>ls : null;
+    const chg = n>1 && c.close[0] ? (c.close[last]/c.close[0]-1)*100 : null;
+    const ccy = c.currency ? ' '+c.currency : '';
+    const h = hov && hov.k===key && hov.i<n ? hov.i : null;
+    let readout = 'last '+f(c.close[last])+ccy+(chg==null ? '' : ' · '+(chg>=0?'+':'−')+Math.abs(chg).toFixed(1)+'% over the window')
+      +(lf==null ? '' : ' · close '+(c.close[last]>lf ? 'above' : 'below')+' the 50-day');
+    let hoverLine='', hoverDots='';
+    if(h!=null){
+      readout = this.dLong(c.dates[h])+' · close '+f(c.close[h])+ccy+' · 50d '+f(c.fast[h])+' · 200d '+f(c.slow[h]);
+      hoverLine = 'M'+x(h).toFixed(1)+','+T+'V'+B;
+      hoverDots = [c.close[h], c.fast[h], c.slow[h]].filter(v=>v!=null).map(v=>'M'+(x(h)+3).toFixed(1)+','+y(v).toFixed(1)+'a3,3 0 1,0 -6,0a3,3 0 1,0 6,0').join('');
+    }
+    return {k, ticker:c.ticker, symbol:c.symbol, readout, grid, yTicks, xTicks, golden, death, hoverLine, hoverDots,
+      close:line(c.close), fast:line(c.fast), slow:line(c.slow),
+      state: up==null ? 'not enough history' : up ? '▲ 50-day above 200-day' : '▼ 50-day below 200-day',
+      stateColor: up==null ? '#68758c' : up ? '#8fd0a0' : '#d98a6a',
+      move: e=>{ const r = e.currentTarget.getBoundingClientRect(); if(!r.width || n<2) return;
+        const fx = (e.clientX-r.left)/r.width*W;
+        const i = Math.max(0, Math.min(n-1, Math.round((fx-L)/(R-L)*(n-1))));
+        const cur = this.state.pxHover; if(!cur || cur.k!==key || cur.i!==i) this.setState({pxHover:{k:key, i}}); }};
+  }
+  roman(n){ let out=''; [[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']].forEach(([v,r])=>{ while(n>=v){ out+=r; n-=v; } }); return out; }
+  pts(arr){ return arr.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' '); }
+
+  renderVals(){
+    const S = this.state, data = S.data;
+    const mcRuns = this.props.mcRuns ?? 1000;
+    const showMilestones = this.props.showMilestones ?? true;
+    const tableRows = this.props.tableRows ?? 12;
+    const V = {};
+    V.headerYear = this.roman(data ? +data.meta.date_max.slice(0,4) : new Date().getFullYear());
+    V.q = S.q; V.span = S.span; V.dFrom = S.dFrom; V.dTo = S.dTo;
+    V.aMin = S.aMin; V.aMax = S.aMax; V.amtFloor = S.amtFloor; V.amtCeil = S.amtCeil;
+    V.mc = S.mc; V.showMilestones = showMilestones; V.nwStacked = S.nwStacked;
+    V.setQ = e=>this.setState({q: e.target.value, rowsShown: 0});
+    V.setDFrom = e=>{ const v=+e.target.value; this.setState({dFrom: Math.min(v, S.dTo)}); };
+    V.setDTo = e=>{ const v=+e.target.value; this.setState({dTo: Math.max(v, S.dFrom)}); };
+    V.setAMin = e=>{ const v=+e.target.value; this.setState({aMin: Math.min(v, S.aMax)}); };
+    V.setAMax = e=>{ const v=+e.target.value; this.setState({aMax: Math.max(v, S.aMin)}); };
+    V.reset = ()=>this.setState({cats:[], tagSel:[], q:'', dFrom:0, dTo:S.span, aMin:S.amtFloor, aMax:S.amtCeil, rowsShown:0, sortKey:'date', sortDir:-1});
+    V.viewTotals = ()=>this.setState({view:'totals'});
+    V.viewTrend = ()=>this.setState({view:'trend'});
+    const selOn = {bg:'rgba(127,180,216,.16)', fg:'#bcd9ef', bd:'#5d86b0'};
+    V.totalsBg = S.view==='totals'?selOn.bg:'transparent'; V.totalsFg = S.view==='totals'?selOn.fg:'#7e8ba0';
+    V.trendBg = S.view==='trend'?selOn.bg:'transparent'; V.trendFg = S.view==='trend'?selOn.fg:'#7e8ba0';
+    V.showTotals = S.view==='totals'; V.showTrend = S.view==='trend';
+
+    const allCats = data ? data.meta.expense_categories : Object.keys(this.CATC);
+    // While transfers are hidden, `investment` isn't a chip you can select —
+    // the dashed chip beside the row toggles the whole class of rows instead.
+    const visCats = S.exInv ? allCats.filter(c=>c!==this.XFER) : allCats;
+    V.hasXfer = allCats.includes(this.XFER);
+    V.xferLabel = S.exInv ? '+ investment' : '− investment';
+    V.xferBg = S.exInv ? 'rgba(255,255,255,.02)' : 'rgba(20,184,166,.14)';
+    V.xferFg = S.exInv ? '#5f6b7e' : '#7fe3d5';
+    V.xferBd = S.exInv ? '#3a3020' : '#14b8a6';
+    V.xferToggle = ()=>this.setState(
+      {exInv: !S.exInv, cats: S.cats.filter(c=>c!==this.XFER), rowsShown:0}, ()=>this.persist());
+    V.catChips = visCats.map(c=>{
+      const on = S.cats.includes(c);
+      return {name:c, toggle:()=>{ const cats = on ? S.cats.filter(x=>x!==c) : S.cats.concat(c); this.setState({cats, rowsShown:0}); },
+        bg: on?'rgba(127,180,216,.15)':'rgba(255,255,255,.02)', fg: on?'#bcd9ef':'#7e8ba0', bd: on?'#5d86b0':'#3a3020'};
+    });
+    const allTags = data ? data.meta.expense_tags : [];
+    V.tagChips = allTags.map(t=>{
+      const on = S.tagSel.includes(t);
+      return {name:t, toggle:()=>{ const tagSel = on ? S.tagSel.filter(x=>x!==t) : S.tagSel.concat(t); this.setState({tagSel, rowsShown:0}); },
+        bg: on?'rgba(217,176,106,.16)':'rgba(255,255,255,.02)', fg: on?'#ecd39a':'#7e8ba0', bd: on?'#a97f45':'#3a3020'};
+    });
+
+    const dayDate = n=>{ if(!data) return ''; const d = new Date(this.pd(data.meta.date_min).getTime()+n*864e5); return d.getUTCDate()+' '+this.MN[d.getUTCMonth()]; };
+    V.dateLabel = data ? dayDate(S.dFrom)+' – '+dayDate(S.dTo) : '';
+    V.amtLabel = 'S$'+S.aMin+' – S$'+S.aMax;
+
+    const rows = this.filterRows(true);
+    const toks = S.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    V.matchInfo = toks.length ? rows.length+' entries match "'+S.q.trim()+'"' : 'search merged notes · space = AND';
+    const parts = [];
+    if(S.cats.length) parts.push('highlighting '+S.cats.length+' categor'+(S.cats.length>1?'ies':'y'));
+    if(toks.length) parts.push('keyword “'+S.q.trim()+'”');
+    if(S.tagSel.length) parts.push('tag'+(S.tagSel.length>1?'s':'')+' '+S.tagSel.join(', '));
+    if(data && (S.dFrom>0 || S.dTo<S.span)) parts.push('dates '+V.dateLabel);
+    if(S.aMin>S.amtFloor || S.aMax<S.amtCeil) parts.push('amounts '+V.amtLabel);
+    V.activeSummary = parts.length ? 'Active filters — '+parts.join(' · ') : 'No filters active — showing every recorded expense.';
+
+    const total = rows.reduce((a,e)=>a+e.amount,0);
+    V.txTotal = this.fmt(total); V.txCount = rows.length;
+    V.txAvg = rows.length ? this.fmt(total/rows.length) : '—';
+    V.noRows = data && rows.length===0; V.hasRows = !data || rows.length>0;
+
+    const sorted = rows.slice().sort((a,b)=>{
+      const k = S.sortKey, d = S.sortDir;
+      if(k==='amount') return (a.amount-b.amount)*d;
+      if(k==='note') return String(a.note||'').localeCompare(String(b.note||''))*d;
+      if(k==='category') return a.category.localeCompare(b.category)*d || (a.date<b.date?1:-1);
+      return (a.date<b.date?-1:a.date>b.date?1:0)*d;
+    });
+    const nShown = Math.min(sorted.length, (S.rowsShown||tableRows));
+    V.txRows = sorted.slice(0,nShown).map(e=>({
+      date: e.date.slice(8,10)+' '+this.MN[+e.date.slice(5,7)-1], cat: e.category, color: this.CATC[e.category]||'#8a7a5e',
+      amtF: this.fmt(e.amount), amtColor: e.amount<0?'#8ab6d9':'#dfe7f2', note: e.note||'—',
+      bg: S.cats.includes(e.category) ? 'rgba(127,180,216,.08)' : 'transparent'
+    }));
+    V.shownInfo = 'showing '+nShown+' of '+sorted.length;
+    V.moreAvailable = sorted.length > nShown;
+    V.showMore = ()=>this.setState({rowsShown: nShown+20});
+    const mkSort = k=>()=>this.setState({sortKey:k, sortDir: S.sortKey===k ? -S.sortDir : (k==='date'||k==='amount'?-1:1)});
+    V.sortDate = mkSort('date'); V.sortCat = mkSort('category'); V.sortAmt = mkSort('amount'); V.sortNote = mkSort('note');
+    V.arrDate = S.sortKey==='date'?(S.sortDir>0?'▲':'▼'):''; V.arrCat = S.sortKey==='category'?(S.sortDir>0?'▲':'▼'):'';
+    V.arrAmt = S.sortKey==='amount'?(S.sortDir>0?'▲':'▼'):''; V.arrNote = S.sortKey==='note'?(S.sortDir>0?'▲':'▼'):'';
+
+    // bars + trend — chips highlight, never hide
+    const shownCats = visCats;
+    const anySel = S.cats.length > 0;
+    const byCatRows = rows;
+    const catTotals = shownCats.map(c=>({name:c, amt: byCatRows.filter(e=>e.category===c).reduce((a,e)=>a+e.amount,0)}))
+      .sort((a,b)=>b.amt-a.amt);
+    const sumSel = catTotals.reduce((a,c)=>a+c.amt,0) || 1;
+    const maxCat = Math.max(1, ...catTotals.map(c=>c.amt));
+    V.barItems = catTotals.map(c=>{
+      const col = this.CATC[c.name]||'#8a7a5e', sel = S.cats.includes(c.name);
+      return {name:c.name, color:col, amtF:this.fmt(c.amt),
+        share: Math.round(c.amt/sumSel*100), w: Math.max(0, c.amt/maxCat*100).toFixed(1),
+        shadow: sel ? '0 0 16px '+col+'cc, 0 0 5px '+col : '0 0 10px '+col+'44',
+        op: anySel && !sel ? '0.35' : '1', filter: sel ? 'brightness(1.25)' : 'none'};
+    });
+
+    const mkeys = data ? this.monthKeys(data) : [];
+    V.trendMonths = mkeys.map(k=>({label: this.MN[+k.slice(5,7)-1]}));
+    const seriesData = shownCats.map(c=>mkeys.map(k=>byCatRows.filter(e=>e.category===c && e.date.slice(0,7)===k).reduce((a,e)=>a+e.amount,0)));
+    const tmax = Math.max(1, ...seriesData.flat());
+    const trend = {};
+    for(let i=0;i<12;i++){ trend['p'+i]=''; trend['c'+i]='none'; trend['w'+i]='2'; trend['o'+i]='1'; trend['f'+i]='none'; }
+    shownCats.slice(0,12).forEach((c,i)=>{
+      const n = mkeys.length;
+      const col = this.CATC[c]||'#8a7a5e', sel = S.cats.includes(c);
+      trend['p'+i] = this.pts(seriesData[i].map((v,j)=>[14+(760-28)*(n>1?j/(n-1):0), 12+(230-26)*(1-v/tmax)]));
+      trend['c'+i] = col;
+      trend['w'+i] = sel ? '3' : '2';
+      trend['o'+i] = anySel && !sel ? '0.28' : '1';
+      trend['f'+i] = sel ? 'drop-shadow(0 0 4px '+col+')' : 'none';
+    });
+    V.trend = trend;
+    V.trendGrid = [0,.25,.5,.75,1].map(f=>{ const y=12+(230-26)*f; return 'M14 '+y.toFixed(1)+' H746'; }).join(' ');
+    V.trendLegend = shownCats.slice(0,12).map(c=>{
+      const col = this.CATC[c]||'#8a7a5e', sel = S.cats.includes(c);
+      return {name:c, color:col, op: anySel && !sel ? '0.35' : '1', glow: sel ? '0 0 8px '+col : 'none'};
+    });
+
+    // ── summary medallions ──
+    const am = this.assetMonths();
+    // Headline figures, the allocation and the projections start from the newest
+    // *complete* snapshot: one still waiting on a statement understates the total.
+    const whole = am.filter(m=>!m.missing.length);
+    const base = whole.length ? whole : am;
+    const latest = base[base.length-1], prev = base[base.length-2];
+    const newest = am[am.length-1];
+    const behind = latest && newest && newest !== latest ? ' · '+this.MN[+newest.key.slice(5,7)-1]+' incomplete' : '';
+    const nwNow = latest ? latest.total : 0;
+    const delta = latest && prev ? latest.total - prev.total : 0;
+    // A snapshot still waiting on a statement understates the total, so a
+    // month-on-month change measured against it would be fiction.
+    const nwGap = !!((latest && latest.missing.length) || (prev && prev.missing.length));
+    // Burn rate is consumption only — investment transfers never count.
+    const spendRows = data ? data.expenses.filter(e=>e.category!==this.XFER) : [];
+    const allSpent = spendRows.reduce((a,e)=>a+e.amount,0);
+    const recentKeys = data ? this.fullKeys(data).slice(-6) : [];
+    const recentSpent = spendRows.filter(e=>recentKeys.includes(e.date.slice(0,7))).reduce((a,e)=>a+e.amount,0);
+    const avgSpend = recentKeys.length ? recentSpent/recentKeys.length : 0;
+    const hasInv = data ? data.expenses.some(e=>e.category===this.XFER) : false;
+    const inc = S.inc||0, spend = S.spend||0, sav = inc - spend;
+    V.medallions = [
+      {label:'NET WORTH', value:this.fmtK(nwNow), sub: latest? 'in '+this.MN[+latest.key.slice(5,7)-1]+' '+latest.key.slice(0,4)+(latest.missing.length?' · incomplete':behind):'—', color:'#ecd39a', isChest:true, isScale:false, isLoom:false, isBag:false, scaleTransform:''},
+      {label:'GROWTH', value: nwGap ? '—' : (delta>=0?'+':'')+this.fmtK(delta), sub: nwGap ? 'awaiting a complete snapshot' : 'vs previous month', color: nwGap ? '#68758c' : delta>=0?'#8fd0a0':'#d98a6a', isChest:false, isScale:true, isLoom:false, isBag:false, scaleTransform:'rotate('+(delta>=0?-10:10)+' 40 26)'},
+      {label:'AVG SPEND', value:this.fmtK(avgSpend), sub:'per month · last '+recentKeys.length+' mo'+(hasInv?' · excl. investment':''), color:'#d9b06a', isChest:false, isScale:false, isLoom:true, isBag:false, scaleTransform:''}
+    ];
+
+    // ── balance-scale geometry: beam tilts, pans stay level ──
+    { const sa=(delta>=0?-10:10)*Math.PI/180, cs=Math.cos(sa), sn=Math.sin(sa), rn=n=>Math.round(n*10)/10;
+      const lx=rn(40-24*cs), ly=rn(26-24*sn), rx=rn(40+24*cs), ry=rn(26+24*sn), cl=12;
+      const pan=(cx,ey)=>({c1:'M'+cx+' '+ey+' L'+(cx-7)+' '+(ey+cl), c2:'M'+cx+' '+ey+' L'+(cx+7)+' '+(ey+cl),
+        rim:'M'+(cx-8)+' '+(ey+cl)+' H'+(cx+8), bowl:'M'+(cx-8)+' '+(ey+cl)+' Q'+cx+' '+(ey+cl+8)+' '+(cx+8)+' '+(ey+cl)});
+      const pL=pan(lx,ly), pR=pan(rx,ry);
+      V.scaleGeo = {beam:'M'+lx+' '+ly+' L'+rx+' '+ry, lc1:pL.c1,lc2:pL.c2,lrim:pL.rim,lbowl:pL.bowl, rc1:pR.c1,rc2:pR.c2,rrim:pR.rim,rbowl:pR.bowl};
+    }
+
+    // ── projections ──
+    const cash0 = latest ? latest.cash : 0;
+    const inv0 = latest ? latest.total - latest.cash : 0;
+    const months = Math.round(S.horizon*12);
+    const retEff = S.inflOn ? ((1+S.ret/100)/(1+S.infl/100)-1)*100 : S.ret;
+    const rm = Math.pow(1+retEff/100, 1/12)-1;
+    const ip = S.investPct/100;
+    const fi = S.swr>0 ? spend*12/(S.swr/100) : 0;
+    const det = this.runDet(cash0, inv0, inc, spend, ip, rm, months);
+
+    V.projInputs = [
+      {label:'TAKE-HOME INCOME / MO', min:0, max:20000, step:50, val:S.inc??0, unit:'S$', set:this.setNum('inc',0,20000)},
+      {label:'SPENDING / MO', min:0, max:10000, step:50, val:S.spend??0, unit:'S$', set:this.setNum('spend',0,10000)},
+      {label:'SAVINGS INVESTED', min:0, max:100, step:5, val:S.investPct, unit:'%', set:this.setNum('investPct',0,100)},
+      {label:'COMPOUND RETURN / YR', min:0, max:12, step:0.1, val:S.ret, unit:'%', set:this.setNum('ret',0,12)},
+      {label:'VOLATILITY σ / YR', min:0, max:40, step:1, val:S.vol, unit:'%', set:this.setNum('vol',0,40)},
+      // Moving the retirement length re-derives the SWR; the SWR stays editable.
+      {label:'RETIREMENT LENGTH', min:30, max:60, step:1, val:S.retireYears, unit:'yrs', set:e=>{
+        let v = parseFloat(e.target.value); if(isNaN(v)) v = 50; v = Math.min(60, Math.max(30, v));
+        this.setState({retireYears: v, swr: this.swrFor(v)}, ()=>this.persist()); }},
+      {label:'SAFE WITHDRAWAL RATE', min:2.5, max:5, step:0.1, val:S.swr, unit:'%', set:this.setNum('swr',2.5,5)},
+      {label:'INFLATION / YR', min:0, max:6, step:0.1, val:S.infl, unit:'%', set:this.setNum('infl',0,6)},
+      {label:'HORIZON', min:5, max:50, step:1, val:S.horizon, unit:'yrs', set:this.setNum('horizon',5,50)},
+      {label:'COAST TARGET', min:5, max:50, step:1, val:S.coastYears, unit:'yrs', set:this.setNum('coastYears',5,50)}
+    ];
+    V.savingsF = (sav>=0?'+':'')+this.fmt0(sav)+' / mo';
+    V.savingsColor = sav>=0?'#8fd0a0':'#d98a6a';
+    V.savingsBd = sav>=0?'rgba(143,208,160,.3)':'rgba(217,138,106,.45)';
+    V.savingsBg = sav>=0?'rgba(143,208,160,.05)':'rgba(217,138,106,.07)';
+    // What the ledger actually says you invested lately: money sent to the
+    // broker minus anything swept back to savings, per month over the last 3
+    // complete months. Shown next to the modelled figure so the assumption can
+    // be checked against reality.
+    const last3 = data ? this.fullKeys(data).slice(-3) : [];
+    const netInvMo = last3.length ? this.netInvest(data, last3)/last3.length : 0;
+    const backMo = last3.length && data.income
+      ? data.income.filter(e=>e.category===this.XFER && last3.includes(e.date.slice(0,7)))
+          .reduce((a,e)=>a+e.amount,0)/last3.length : 0;
+    V.savingsNote = sav>=0 ? Math.round(ip*100)+'% invested, rest to cash' : 'burning the vault — runway mode';
+    V.hasNetInv = netInvMo !== 0 || backMo !== 0;
+    V.netInvNote = 'ledger says ' + this.fmt0(netInvMo) + '/mo actually invested'
+      + (backMo ? ' (' + this.fmt0(backMo) + '/mo swept back netted off)' : '')
+      + ' · last ' + last3.length + ' mo';
+    V.resetProj = ()=>this.resetProj();
+    // Where the defaults came from, so a nudged slider can be judged against it.
+    const sm = data ? this.spendModel(data) : null, al = data ? this.allocDefaults(data) : null;
+    V.hasDefNote = !!(sm || al);
+    V.defNote = [
+      sm ? 'ledger spend ≈ '+this.fmt0(sm.spend)+' ± '+this.fmt0(sm.se)+'/mo: everyday '+this.fmt0(sm.everyday)+' (recent months weighted) + one-offs '+this.fmt0(sm.lumpy)+' spread over '+sm.n+' mo' : '',
+      al ? 'return & σ from your '+Math.round(al.stockShare*100)+'/'+(100-Math.round(al.stockShare*100))+' stocks/bonds mix · SWR from retirement length' : ''
+    ].filter(Boolean).join(' · ');
+    V.mcOn = ()=>this.setState({mc:true}, ()=>this.persist());
+    V.mcOff = ()=>this.setState({mc:false}, ()=>this.persist());
+    V.detBg = !S.mc?selOn.bg:'transparent'; V.detFg = !S.mc?selOn.fg:'#7e8ba0';
+    V.mcBg = S.mc?selOn.bg:'transparent'; V.mcFg = S.mc?selOn.fg:'#7e8ba0';
+    V.toggleInfl = ()=>this.setState({inflOn: !S.inflOn}, ()=>this.persist());
+    V.inflBg = S.inflOn?'rgba(127,180,216,.14)':'transparent';
+    V.inflFg = S.inflOn?'#bcd9ef':'#7e8ba0';
+    V.inflLabel = S.inflOn ? 'REAL TERMS · INFLATION-ADJUSTED ✦' : 'NOMINAL TERMS · TAP FOR REAL';
+
+    V.fiF = this.fmtK(fi);
+    V.fiFormula = this.fmt0(spend*12)+'/yr ÷ '+S.swr+'% SWR';
+    const fiPct = fi>0 ? nwNow/fi*100 : 0;
+    V.fiPct = fiPct.toFixed(1); V.fiPctW = Math.min(100, fiPct).toFixed(1);
+
+    const mcd = (S.mc && S.mcData) ? S.mcData : null;
+    const lineArr = mcd ? mcd.p50 : det.tot;
+    const startDate = latest ? this.pd(latest.key+'-01') : new Date();
+    const dateAt = t=>{ const d = new Date(Date.UTC(startDate.getUTCFullYear(), startDate.getUTCMonth()+t, 1)); return this.MN[d.getUTCMonth()]+' '+d.getUTCFullYear(); };
+    const yearAt = t=> new Date(Date.UTC(startDate.getUTCFullYear(), startDate.getUTCMonth()+t, 1)).getUTCFullYear();
+    let fiT = null; for(let t=0;t<lineArr.length;t++){ if(lineArr[t]>=fi){ fiT=t; break; } }
+    if(sav<0 && nwNow<fi) {
+      const dep = mcd ? (()=>{ for(let t=0;t<mcd.p50.length;t++) if(mcd.p50[t]<=0) return t; return null; })() : det.depleted;
+      V.verdictLabel = 'RUNWAY';
+      if(dep){ V.verdictMain = (dep/12).toFixed(1)+' years'; V.verdictSub = 'vault lasts until '+dateAt(dep)+' at this burn'; V.verdictColor = '#d98a6a'; }
+      else { V.verdictMain = '> '+S.horizon+' years'; V.verdictSub = 'vault outlasts the horizon even while burning'; V.verdictColor = '#d9b06a'; }
+    } else {
+      V.verdictLabel = 'YEARS TO FI';
+      if(fiT===0){ V.verdictMain='Already there'; V.verdictSub='net worth exceeds the FI number'; V.verdictColor='#8fd0a0'; }
+      else if(fiT){ V.verdictMain=(fiT/12).toFixed(1)+' years'; V.verdictSub='crossing in '+dateAt(fiT); V.verdictColor='#8fd0a0'; }
+      else { V.verdictMain='Not in horizon'; V.verdictSub='FI not reached within '+S.horizon+' years — honestly'; V.verdictColor='#d98a6a'; }
+    }
+    V.mcProb = mcd ? mcd.prob+'%' : '…';
+    V.projLegend = mcd ? 'projected (median of '+mcRuns+' runs)' : 'projected';
+
+    // MC scheduling
+    const sig = [inc,spend,S.investPct,retEff,S.vol,S.swr,S.horizon,mcRuns,cash0.toFixed(0),inv0.toFixed(0),fi.toFixed(0)].join('|');
+    this.maybeMC(sig, {runs: mcRuns, months, rm, vol:S.vol, cash0, inv0, ip, sav, fi});
+
+    // projection chart geometry
+    const W=980, Hh=330, L=64, R=14, T=14, B=30;
+    const histVals = am.map(m=>m.total);
+    const Hn = Math.max(1, histVals.length);
+    const N = (Hn-1) + months;
+    const maxLine = Math.max(...lineArr, ...histVals, 1);
+    const p90max = mcd ? Math.max(...mcd.p90) : 0;
+    const showFiLine = fi>0 && Math.max(maxLine, p90max) >= fi*0.25;
+    const ymax = Math.max(maxLine, p90max, showFiLine?fi*1.06:0) * 1.04;
+    const X = i=> L + (W-L-R)*i/Math.max(1,N);
+    const Y = v=> T + (Hh-T-B)*(1-Math.max(0,v)/ymax);
+    V.pHist = this.pts(histVals.map((v,i)=>[X(i), Y(v)]));
+    const step = Math.max(1, Math.ceil(months/260));
+    const projPts = []; for(let t=0;t<lineArr.length;t+=step) projPts.push([X(Hn-1+t), Y(lineArr[t])]);
+    if((lineArr.length-1)%step!==0) projPts.push([X(Hn-1+lineArr.length-1), Y(lineArr[lineArr.length-1])]);
+    V.pProj = this.pts(projPts);
+    if(mcd){
+      const b10=[],b90=[];
+      for(let t=0;t<mcd.p10.length;t+=step){ b10.push([X(Hn-1+t), Y(mcd.p10[t])]); b90.push([X(Hn-1+t), Y(mcd.p90[t])]); }
+      V.pBand = this.pts(b90.concat(b10.slice().reverse()));
+      V.pP10 = this.pts(b10); V.pP90 = this.pts(b90);
+    } else { V.pBand=''; V.pP10=''; V.pP90=''; }
+    const gstep = this.nice(ymax/4);
+    let gp=''; const yt=[];
+    for(let v=gstep; v<=ymax; v+=gstep){ const y=Y(v); gp+='M'+L+' '+y.toFixed(1)+' H'+(W-R)+' '; yt.push({pct:(y/Hh*100).toFixed(1), label:this.fmtK(v)}); }
+    V.pGrid = gp; V.pYTicks = yt;
+    const yrStep = S.horizon<=12?2 : S.horizon<=25?5 : 10;
+    const xt=[]; const y0=yearAt(0);
+    xt.push({pct:(X(0)/W*100).toFixed(1), label:String(y0)});
+    for(let y=y0+yrStep; y<=y0+S.horizon; y+=yrStep){ const t=(y-y0)*12 - startDate.getUTCMonth(); if(t>0 && t<=months) xt.push({pct:(X(Hn-1+t)/W*100).toFixed(1), label:String(y)}); }
+    V.pXTicks = xt;
+    V.pFiY = Y(fi).toFixed(1); V.pFiX1 = L; V.pFiX2 = W-R;
+    V.pFiOp = showFiLine ? 0.9 : 0; V.pFiLabelPct = (Y(fi)/Hh*100).toFixed(1);
+
+    // milestones
+    const findT = amt=>{ for(let t=0;t<lineArr.length;t++) if(lineArr[t]>=amt) return t; return null; };
+    const msDefs = [];
+    if(spend>0) msDefs.push({name:'1 year of expenses', amt:12*spend, color:'#8ab6d9'});
+    const r1 = Math.ceil((nwNow+1)/50000)*50000;
+    const rounds = [r1]; let rn = Math.ceil((r1+1)/100000)*100000;
+    while(rounds.length<4 && rn<=Math.max(fi, ymax)){ rounds.push(rn); rn+=100000; }
+    rounds.forEach(r=>msDefs.push({name:'Vault reaches', amt:r, color:'#d9b06a'}));
+    const coastM = Math.round(S.coastYears*12);
+    const coastNow = rm>0 ? fi/Math.pow(1+rm, coastM) : fi;
+    let coastT = null;
+    for(let t=0;t<Math.min(lineArr.length, coastM);t++){ const need = rm>0 ? fi/Math.pow(1+rm, coastM-t) : fi; if(lineArr[t]>=need){ coastT=t; break; } }
+    msDefs.push({name:'Coast FI — saving becomes optional', amt:coastNow, color:'#7fb4d8', coast:true});
+    const marks = [];
+    V.milestones = msDefs.map(d=>{
+      const t = d.coast ? coastT : findT(d.amt);
+      let when;
+      if(t===0) when = 'already reached';
+      else if(t!=null){ when = 'crossed '+dateAt(t)+' · '+(t/12).toFixed(1)+' yrs'; marks.push([X(Hn-1+t), Y(d.coast?lineArr[t]:d.amt)]); }
+      else when = 'beyond the horizon';
+      return {name:d.name, amtF:this.fmtK(d.amt), when, color:d.color};
+    });
+    if(fiT && fiT>0) marks.push([X(Hn-1+fiT), Y(fi)]);
+    V.pMarks = showMilestones ? marks.map(m=>'M'+m[0].toFixed(1)+' '+(m[1]-6).toFixed(1)+' l6 6 l-6 6 l-6 -6 z').join(' ') : '';
+    V.caveat = 'A divination, not advice — defaults rest on only ~'+(data?this.fullKeys(data).length:0)+' full months of records. Inputs persist in this browser.';
+
+    // ── net worth card ──
+    const nW=700, nH=250, nL=54, nR=16, nT=12, nB=10;
+    const nmax = Math.max(1, ...am.map(m=>m.total))*1.08;
+    const nX = i=> nL + (nW-nL-nR)*(am.length>1 ? i/(am.length-1) : 0);
+    const nY = v=> nT + (nH-nT-nB)*(1-v/nmax);
+    const nw = {line:'', dots:'', a0:'',a1:'',a2:'',a3:'',a4:'', k0:'none',k1:'none',k2:'none',k3:'none',k4:'none'};
+    const noop = ()=>{};
+    for(let i=0;i<5;i++){ nw['o'+i]='0.85'; nw['f'+i]='none'; nw['e'+i]=noop; }
+    V.nwLeave = ()=>this.setState({hoverAsset:null});
+    nw.line = this.pts(am.map((m,i)=>[nX(i), nY(m.total)]));
+    nw.dots = am.map((m,i)=>{ const x=nX(i), y=nY(m.total); return 'M'+x.toFixed(1)+' '+(y-4).toFixed(1)+' l4 4 l-4 4 l-4 -4 z'; }).join(' ');
+    const acats = data ? data.meta.asset_categories : [];
+    if(S.nwStacked && am.length){
+      let base = am.map(()=>0);
+      acats.slice(0,5).forEach((c,ci)=>{
+        const topv = am.map((m,i)=>base[i]+(m.cats[c]||0));
+        const top = topv.map((v,i)=>[nX(i), nY(v)]);
+        const bot = base.map((v,i)=>[nX(i), nY(v)]).reverse();
+        nw['a'+ci] = this.pts(top.concat(bot));
+        nw['k'+ci] = this.ASSC[c]||'#8a7a5e';
+        nw['o'+ci] = S.hoverAsset ? (S.hoverAsset===c ? '1' : '0.4') : '0.85';
+        nw['f'+ci] = S.hoverAsset===c ? 'drop-shadow(0 0 6px '+(this.ASSC[c]||'#8a7a5e')+')' : 'none';
+        nw['e'+ci] = ()=>this.setState({hoverAsset:c});
+        base = topv;
+      });
+      nw.line=''; nw.dots='';
+    }
+    V.nw = nw;
+    let ngp=''; const nyt=[]; const ngstep=this.nice(nmax/3);
+    for(let v=ngstep; v<=nmax; v+=ngstep){ const y=nY(v); ngp+='M'+nL+' '+y.toFixed(1)+' H'+(nW-nR)+' '; nyt.push({pct:(y/nH*100).toFixed(1), label:this.fmtK(v)}); }
+    V.nwGrid = ngp; V.nwYTicks = nyt;
+    V.nwMonths = am.map(m=>({label: this.MN[+m.key.slice(5,7)-1] + (m.missing.length?'*':'')}));
+    const partialMs = am.filter(m=>m.missing.length);
+    V.nwPartial = partialMs.length>0;
+    V.nwPartialNote = '* ' + partialMs.map(m=>this.MN[+m.key.slice(5,7)-1]+' '+m.key.slice(0,4)+' is still missing '
+      + m.missing.map(c=>c.replace('_',' ')).join(' and ')).join('; ')
+      + ' — the total shown there is understated, not a real fall.';
+    V.nwLine = ()=>this.setState({nwStacked:false});
+    V.nwStack = ()=>this.setState({nwStacked:true});
+    V.nwLineBg = !S.nwStacked?selOn.bg:'transparent'; V.nwLineFg = !S.nwStacked?selOn.fg:'#7e8ba0';
+    V.nwStackBg = S.nwStacked?selOn.bg:'transparent'; V.nwStackFg = S.nwStacked?selOn.fg:'#7e8ba0';
+    V.assetLegend = acats.map(c=>({name:c.replace('_',' '), color:this.ASSC[c]||'#8a7a5e',
+      txt: S.hoverAsset===c ? '#e8f1fa' : '#a8b4c7',
+      glow: S.hoverAsset===c ? '0 0 8px '+(this.ASSC[c]||'#8a7a5e') : 'none',
+      enter: ()=>this.setState({hoverAsset:c}), leave: ()=>this.setState({hoverAsset:null})}));
+
+    // ── asset breakdown ──
+    const amax = Math.max(1, ...am.map(m=>m.total));
+    V.assetBars = am.map(m=>({label:this.MN[+m.key.slice(5,7)-1] + (m.missing.length?'*':''), h:(m.total/amax*100).toFixed(1),
+      segs: acats.map(c=>{ const col=this.ASSC[c]||'#8a7a5e'; return {h: m.total>0?((m.cats[c]||0)/m.total*100).toFixed(2):0, color:'linear-gradient(90deg,rgba(255,255,255,.18),rgba(255,255,255,0) 40%,rgba(0,0,0,.28)),'+col,
+        filter: S.hoverAsset===c ? 'brightness(1.3)' : 'none',
+        enter: ()=>this.setState({hoverAsset:c}), leave: ()=>this.setState({hoverAsset:null})}; })}));
+    V.latestMonthLabel = latest ? this.MN[+latest.key.slice(5,7)-1].toUpperCase()+' '+latest.key.slice(0,4) : '—';
+    V.latestPartial = !!(latest && latest.missing.length);
+    V.latestPartialNote = V.latestPartial ? 'Still awaiting ' + latest.missing.map(c=>c.replace('_',' ')).join(' and ')
+      + ' — these shares are of an incomplete total.' : '';
+    V.allocation = latest ? acats.map(c=>({name:c.replace('_',' '),
+      enter: ()=>this.setState({hoverAsset:c}), leave: ()=>this.setState({hoverAsset:null}),
+      shadow: S.hoverAsset===c ? '0 0 18px '+(this.ASSC[c]||'#8a7a5e')+'cc, 0 0 6px '+(this.ASSC[c]||'#8a7a5e') : '0 0 10px '+(this.ASSC[c]||'#8a7a5e')+'44',
+      filter: S.hoverAsset===c ? 'brightness(1.35)' : 'none',
+      color:'linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0) 45%),linear-gradient(90deg,'+(this.ASSC[c]||'#8a7a5e')+'66,'+(this.ASSC[c]||'#8a7a5e')+')',
+      amtF:this.fmt0(latest.cats[c]||0), pct: (100*(latest.cats[c]||0)/latest.total).toFixed(1)}))
+      .sort((a,b)=>b.pct-a.pct) : [];
+
+    // holdings drill-down (ticker-tagged stocks_foreign rows, 2026-07 onward)
+    const hRows = (data && latest) ? data.assets.filter(a=>a.date===latest.date && a.category==='stocks_foreign' && a.tags) : [];
+    V.holdingsAvail = hRows.length>0;
+    V.showHoldings = S.showHoldings;
+    V.toggleHoldings = ()=>this.setState({showHoldings: !S.showHoldings});
+    V.holdingsLabel = (S.showHoldings?'▾ ':'▸ ')+'FOREIGN STOCKS · '+hRows.length+' HOLDINGS';
+    const hSum = hRows.reduce((a,r)=>a+r.amount,0)||1;
+    // Every snapshot's note carries that month's quantity, close price and
+    // average cost, so the whole cost-basis-vs-market-value history is already
+    // in the data — parse it back out and sparkline it per ticker. Both series
+    // are in the holding's own currency, so they stay comparable across months
+    // without dragging the USD→SGD rate into it.
+    const hSeries = {};
+    (data ? data.assets : []).forEach(a=>{
+      if(a.category!=='stocks_foreign' || !a.tags) return;
+      const qc = (a.note||'').match(/:\s*([\d.]+)\s+@\s+[A-Z]{3}\s+([\d.]+)/);
+      const av = (a.note||'').match(/avg\s+([\d.]+)/);
+      if(!qc || !av) return;
+      const qty = parseFloat(qc[1]);
+      (hSeries[a.tags]=hSeries[a.tags]||[]).push({date:a.date, mv:qty*parseFloat(qc[2]), cb:qty*parseFloat(av[1])});
+    });
+    Object.values(hSeries).forEach(s=>s.sort((a,b)=>a.date<b.date?-1:1));
+    const spW=110, spH=26, spP=3;
+    V.holdings = hRows.slice().sort((a,b)=>b.amount-a.amount).map(r=>{
+      const parts = (r.note||'').split(';').map(s=>s.trim());
+      const plM = (r.note||'').match(/P&L\s*([+-][\d.]+)/);
+      const pl = plM ? parseFloat(plM[1]) : null;
+      const ser = hSeries[r.tags] || [];
+      let mvPts='', cbPts='';
+      if(ser.length>1){
+        const vals = ser.reduce((a,p)=>a.concat([p.mv,p.cb]),[]);
+        const lo=Math.min.apply(null,vals), hi=Math.max.apply(null,vals), rng=(hi-lo)||1;
+        const sx = i=>(spW*i/(ser.length-1)).toFixed(1);
+        const sy = v=>(spP+(spH-2*spP)*(1-(v-lo)/rng)).toFixed(1);
+        mvPts = ser.map((p,i)=>sx(i)+','+sy(p.mv)).join(' ');
+        cbPts = ser.map((p,i)=>sx(i)+','+sy(p.cb)).join(' ');
+      }
+      return {ticker: r.tags.toUpperCase(), desc: parts.filter(p=>!/^P&L/.test(p)).join(' · '),
+        mvPts, cbPts,
+        share: (r.amount/hSum*100).toFixed(1), amtF: this.fmt0(r.amount),
+        pl: pl==null ? '—' : (pl>=0?'+':'−')+Math.abs(pl).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}),
+        plColor: pl==null ? '#68758c' : pl>=0 ? '#8fd0a0' : '#d98a6a'};
+    });
+
+
+    // ── price trends (data.prices, saved by scripts/ma_cross_alert.py) ──
+    const PX = data && data.prices;
+    V.pxNone = !!data && !(PX && ((PX.holdings||[]).length || (PX.watchlist||[]).length));
+    V.pxFastLabel = (PX ? PX.fast : 50)+'-day SMA';
+    V.pxSlowLabel = (PX ? PX.slow : 200)+'-day SMA';
+    V.pxLeave = ()=>{ if(S.pxHover) this.setState({pxHover:null}); };
+    const pxLast = PX && !V.pxNone ? [].concat(PX.holdings||[], PX.watchlist||[]).map(c=>c.dates[c.dates.length-1]).sort().pop() : null;
+    V.pxSub = pxLast ? 'last '+(PX.months||8)+' months of daily closes, last close in '+this.dLong(pxLast)+' · holdings come from the latest snapshot · the watchlist is what ma_cross_alert.py watches that you don’t hold'
+                     : 'daily closes with their moving averages';
+    // Holdings left, watchlist right, every chart the same width: holdings get up
+    // to 3 columns, the watchlist as many as it needs to fit in as many rows.
+    const pxH = PX ? (PX.holdings||[]).length : 0, pxW = PX ? (PX.watchlist||[]).length : 0;
+    const pxHc = pxW ? Math.min(3, Math.max(1, Math.ceil(pxH/pxW))) : 3;
+    const pxWc = pxH ? Math.min(2, Math.max(1, Math.ceil(pxW/Math.ceil(pxH/pxHc)))) : 3;
+    V.pxCols = pxH && pxW ? pxHc+'fr '+pxWc+'fr' : '1fr';
+    V.pxGroups = PX ? [['HOLDINGS', PX.holdings||[], 'h', pxHc], ['WATCHLIST', PX.watchlist||[], 'w', pxWc]]
+      .filter(g=>g[1].length).map(([title, list, gk, nc], gi)=>({title: title+' · '+list.length,
+        cols: 'repeat('+nc+',minmax(0,1fr))',
+        pad: gi ? '0 0 0 22px' : (pxW && pxH ? '0 22px 0 0' : '0'), rule: gi ? '1px solid rgba(217,176,106,.18)' : 'none',
+        panels: list.map(c=>this.pricePanel(c, gk+':'+c.ticker, S.pxHover, this.PXK[gk]))})) : [];
+
+    // ── income card ──
+    const incomeRows = data ? (data.income||[]) : [];
+    V.noIncome = data && incomeRows.length===0;
+    V.hasIncome = !data || incomeRows.length>0;
+    // Savings rate is earnings vs consumption — broker transfers are neither.
+    const spendByM = {}; spendRows.forEach(e=>{ const k=e.date.slice(0,7); spendByM[k]=(spendByM[k]||0)+e.amount; });
+    const incByM = {}; incomeRows.filter(e=>e.category!==this.XFER).forEach(e=>{ const k=e.date.slice(0,7); incByM[k]=(incByM[k]||0)+e.amount; });
+    const imax = Math.max(1, ...mkeys.map(k=>Math.max(incByM[k]||0, spendByM[k]||0)));
+    const fullK = data ? this.fullKeys(data) : [];
+    V.incMonths = mkeys.map(k=>{
+      const iv=incByM[k]||0, sp=spendByM[k]||0;
+      const partial = !fullK.includes(k);
+      const rate = iv>0 ? Math.round((iv-sp)/iv*100)+'%' : '—';
+      return {label: this.MN[+k.slice(5,7)-1]+(partial?'*':''), incH:(iv/imax*100).toFixed(1), spendH:(sp/imax*100).toFixed(1),
+        rate: partial ? rate+'*' : rate, rateColor: iv>0 ? (iv-sp>=0?'#8fd0a0':'#d98a6a') : '#5d6980'};
+    });
+
+    // ── recurring ──
+    const rec = this.recurring();
+    V.fixedMonthlyF = this.fmt0(rec.fixed);
+    const fShare = allSpent>0 ? Math.min(100, Math.round(rec.fixedTotal/allSpent*100)) : 0;
+    V.fixedShare = fShare; V.varShare = 100-fShare;
+    V.noRecurring = data && rec.items.length===0;
+    V.recItems = rec.items.map(i=>({name:i.tok, tag: '· '+i.kind, monthlyF:this.fmt0(i.monthly),
+      months:i.months, totalF:this.fmt0(i.total),
+      dismiss: ()=>{ const d=S.dismissed.concat(i.tok); this.setState({dismissed:d}); try{localStorage.setItem('bronze-ledger.dismissed', JSON.stringify(d));}catch(e){} }}));
+    V.hasDismissed = (rec.dismissedCount||0)>0;
+    V.restoreLabel = 'RESTORE '+(rec.dismissedCount||0)+' DISMISSED';
+    V.restoreAll = ()=>{ this.setState({dismissed:[]}); try{localStorage.setItem('bronze-ledger.dismissed','[]');}catch(e){} };
+
+    // ═══════════ MEANS (income) ═══════════
+    V.iq = S.iq; V.iSpan = S.iSpan; V.iDFrom = S.iDFrom; V.iDTo = S.iDTo;
+    V.iAMin = S.iAMin; V.iAMax = S.iAMax; V.iAmtFloor = S.iAmtFloor; V.iAmtCeil = S.iAmtCeil;
+    V.setIq = e=>this.setState({iq: e.target.value, iRowsShown: 0});
+    V.setIDFrom = e=>{ const v=+e.target.value; this.setState({iDFrom: Math.min(v, S.iDTo)}); };
+    V.setIDTo = e=>{ const v=+e.target.value; this.setState({iDTo: Math.max(v, S.iDFrom)}); };
+    V.setIAMin = e=>{ const v=+e.target.value; this.setState({iAMin: Math.min(v, S.iAMax)}); };
+    V.setIAMax = e=>{ const v=+e.target.value; this.setState({iAMax: Math.max(v, S.iAMin)}); };
+    V.iReset = ()=>this.setState({iCats:[], iTags:[], iq:'', iDFrom:0, iDTo:S.iSpan, iAMin:S.iAmtFloor, iAMax:S.iAmtCeil, iRowsShown:0, iSortKey:'date', iSortDir:-1});
+    V.iViewTotals = ()=>this.setState({iView:'totals'});
+    V.iViewTrend = ()=>this.setState({iView:'trend'});
+    V.iTotalsBg = S.iView==='totals'?selOn.bg:'transparent'; V.iTotalsFg = S.iView==='totals'?selOn.fg:'#7e8ba0';
+    V.iTrendBg = S.iView==='trend'?selOn.bg:'transparent'; V.iTrendFg = S.iView==='trend'?selOn.fg:'#7e8ba0';
+    V.iShowTotals = S.iView==='totals'; V.iShowTrend = S.iView==='trend';
+
+    const iAllCats0 = data ? data.meta.income_categories : Object.keys(this.ICATC);
+    // Broker cash coming back is filtered out of the rows, so drop its chip too.
+    const iAllCats = S.exInv ? iAllCats0.filter(c=>c!==this.XFER) : iAllCats0;
+    V.iCatChips = iAllCats.map(c=>{ const on = S.iCats.includes(c);
+      return {name:c, toggle:()=>{ const iCats = on ? S.iCats.filter(x=>x!==c) : S.iCats.concat(c); this.setState({iCats, iRowsShown:0}); },
+        bg: on?'rgba(127,180,216,.15)':'rgba(255,255,255,.02)', fg: on?'#bcd9ef':'#7e8ba0', bd: on?'#5d86b0':'#3a3020'};
+    });
+    const iAllTags = data ? data.meta.income_tags : [];
+    V.iTagChips = iAllTags.map(t=>{ const on = S.iTags.includes(t);
+      return {name:t, toggle:()=>{ const iTags = on ? S.iTags.filter(x=>x!==t) : S.iTags.concat(t); this.setState({iTags, iRowsShown:0}); },
+        bg: on?'rgba(217,176,106,.16)':'rgba(255,255,255,.02)', fg: on?'#ecd39a':'#7e8ba0', bd: on?'#a97f45':'#3a3020'};
+    });
+
+    V.iDateLabel = data ? dayDate(S.iDFrom)+' – '+dayDate(S.iDTo) : '';
+    V.iAmtLabel = 'S$'+S.iAMin+' – S$'+S.iAMax;
+
+    const iRows = this.filterIncome(true);
+    const iToks = S.iq.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    V.iMatchInfo = iToks.length ? iRows.length+' entries match "'+S.iq.trim()+'"' : 'search merged notes · space = AND';
+    const iParts = [];
+    if(S.iCats.length) iParts.push('highlighting '+S.iCats.length+' source'+(S.iCats.length>1?'s':''));
+    if(iToks.length) iParts.push('keyword “'+S.iq.trim()+'”');
+    if(S.iTags.length) iParts.push('tag'+(S.iTags.length>1?'s':'')+' '+S.iTags.join(', '));
+    if(data && (S.iDFrom>0 || S.iDTo<S.iSpan)) iParts.push('dates '+V.iDateLabel);
+    if(S.iAMin>S.iAmtFloor || S.iAMax<S.iAmtCeil) iParts.push('amounts '+V.iAmtLabel);
+    V.iActiveSummary = iParts.length ? 'Active filters — '+iParts.join(' · ') : 'No filters active — showing every recorded means.';
+
+    const iTot = iRows.reduce((a,e)=>a+e.amount,0);
+    V.iTxTotal = this.fmt(iTot); V.iTxCount = iRows.length; V.iTxAvg = iRows.length ? this.fmt(iTot/iRows.length) : '—';
+    V.iNoRows = data && iRows.length===0; V.iHasRows = !data || iRows.length>0;
+
+    const iSorted = iRows.slice().sort((a,b)=>{ const k=S.iSortKey, d=S.iSortDir;
+      if(k==='amount') return (a.amount-b.amount)*d;
+      if(k==='note') return String(a.note||'').localeCompare(String(b.note||''))*d;
+      if(k==='category') return a.category.localeCompare(b.category)*d || (a.date<b.date?1:-1);
+      return (a.date<b.date?-1:a.date>b.date?1:0)*d;
+    });
+    const iNShown = Math.min(iSorted.length, (S.iRowsShown||tableRows));
+    V.iTxRows = iSorted.slice(0,iNShown).map(e=>({
+      date: e.date.slice(8,10)+' '+this.MN[+e.date.slice(5,7)-1], cat: e.category, color: this.ICATC[e.category]||'#8a7a5e',
+      amtF: this.fmt(e.amount), amtColor: '#8fd0a0', note: e.note||'—',
+      bg: S.iCats.includes(e.category) ? 'rgba(127,180,216,.08)' : 'transparent'
+    }));
+    V.iShownInfo = 'showing '+iNShown+' of '+iSorted.length;
+    V.iMoreAvailable = iSorted.length > iNShown;
+    V.iShowMore = ()=>this.setState({iRowsShown: iNShown+20});
+    const iMkSort = k=>()=>this.setState({iSortKey:k, iSortDir: S.iSortKey===k ? -S.iSortDir : (k==='date'||k==='amount'?-1:1)});
+    V.iSortDate=iMkSort('date'); V.iSortCat=iMkSort('category'); V.iSortAmt=iMkSort('amount'); V.iSortNote=iMkSort('note');
+    V.iArrDate=S.iSortKey==='date'?(S.iSortDir>0?'▲':'▼'):''; V.iArrCat=S.iSortKey==='category'?(S.iSortDir>0?'▲':'▼'):'';
+    V.iArrAmt=S.iSortKey==='amount'?(S.iSortDir>0?'▲':'▼'):''; V.iArrNote=S.iSortKey==='note'?(S.iSortDir>0?'▲':'▼'):'';
+
+    const iAnySel = S.iCats.length>0;
+    const iCatTotals = iAllCats.map(c=>({name:c, amt: iRows.filter(e=>e.category===c).reduce((a,e)=>a+e.amount,0)})).sort((a,b)=>b.amt-a.amt);
+    const iSumSel = iCatTotals.reduce((a,c)=>a+c.amt,0) || 1;
+    const iMaxCat = Math.max(1, ...iCatTotals.map(c=>c.amt));
+    V.iBarItems = iCatTotals.map(c=>{ const col=this.ICATC[c.name]||'#8a7a5e', sel=S.iCats.includes(c.name);
+      return {name:c.name, color:col, amtF:this.fmt(c.amt), share:Math.round(c.amt/iSumSel*100), w:Math.max(0,c.amt/iMaxCat*100).toFixed(1),
+        shadow: sel?'0 0 16px '+col+'cc, 0 0 5px '+col:'0 0 10px '+col+'44', op: iAnySel&&!sel?'0.35':'1', filter: sel?'brightness(1.25)':'none'};
+    });
+
+    const iSeries = iAllCats.map(c=>mkeys.map(k=>iRows.filter(e=>e.category===c && e.date.slice(0,7)===k).reduce((a,e)=>a+e.amount,0)));
+    const iTmax = Math.max(1, ...iSeries.flat());
+    const iTrend = {};
+    for(let i=0;i<10;i++){ iTrend['p'+i]=''; iTrend['c'+i]='none'; iTrend['w'+i]='2'; iTrend['o'+i]='1'; iTrend['f'+i]='none'; }
+    iAllCats.slice(0,10).forEach((c,i)=>{ const n=mkeys.length; const col=this.ICATC[c]||'#8a7a5e', sel=S.iCats.includes(c);
+      iTrend['p'+i] = this.pts(iSeries[i].map((v,j)=>[14+(760-28)*(n>1?j/(n-1):0), 12+(230-26)*(1-v/iTmax)]));
+      iTrend['c'+i]=col; iTrend['w'+i]=sel?'3':'2'; iTrend['o'+i]=iAnySel&&!sel?'0.28':'1'; iTrend['f'+i]=sel?'drop-shadow(0 0 4px '+col+')':'none';
+    });
+    V.iTrend = iTrend;
+    V.iTrendMonths = mkeys.map(k=>({label: this.MN[+k.slice(5,7)-1]}));
+    V.iTrendLegend = iAllCats.slice(0,10).map(c=>{ const col=this.ICATC[c]||'#8a7a5e', sel=S.iCats.includes(c);
+      return {name:c, color:col, op: iAnySel&&!sel?'0.35':'1', glow: sel?'0 0 8px '+col:'none'};
+    });
+
+    return V;
+  }
+}
+</script>
+</body>
+</html>

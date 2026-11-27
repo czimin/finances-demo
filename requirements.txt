@@ -1,0 +1,4 @@
+# Only scripts/ma_cross_alert.py needs these; everything else is stdlib.
+pandas==3.1.1
+requests==2.34.2
+yfinance==1.8.0
