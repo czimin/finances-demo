@@ -7,5 +7,3 @@ dashboard_data.js
 __pycache__/
 *.tmp
 .venv/
-# Instructions for Claude Code; kept locally, not published.
-CLAUDE.md
